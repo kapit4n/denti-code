@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export default function Index() {
   return (
     <div>
-      Clients List Page
+      Create Client
     </div>
   )
 }

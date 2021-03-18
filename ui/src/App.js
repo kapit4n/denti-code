@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import ClientsList from './views/clients/list'
+import Clients from './views/clients'
 import Login from './views/login'
 
 import {
@@ -20,7 +20,7 @@ function App() {
         <main style={{ position: 'relative', top: '5rem' }}>
           <Switch>
             <Route path="/clients">
-              <ClientsList />
+              <Clients />
             </Route>
 
             <Route path="/login">
