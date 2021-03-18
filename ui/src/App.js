@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Nav from './Nav'
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Doctor records register...
+        <Nav />
       </header>
     </div>
   );
