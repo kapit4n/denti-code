@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import ClientsList from './views/clients/list'
+import Login from './views/login'
 
 import {
   BrowserRouter as Router,
@@ -16,11 +17,18 @@ function App() {
     <div className="App">
       <Router>
         <Nav />
-        <Switch>
-          <Route path="clients">
-            <ClientsList />
-          </Route>
-        </Switch>
+        <main style={{ position: 'relative', top: '5rem' }}>
+          <Switch>
+            <Route path="/clients">
+              <ClientsList />
+            </Route>
+
+            <Route path="/login">
+              <Login />
+            </Route>
+
+          </Switch>
+        </main>
       </Router>
     </div>
   );
