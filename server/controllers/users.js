@@ -19,11 +19,12 @@ exports.create = async function (req, res) {
 }
 
 exports.update = function (req, res) {
-  const updated = await User.update(req.body, {id: req.params.id})
+  const updated = await User.update(req.body, { id: req.params.id })
   res.json(updated)
 }
 
 exports.delete = function (req, res) {
-  res.json({ success: true })
+  const result = User.destroy({ where: { id: req.params.id } })
+  res.json(result)
 }
 
