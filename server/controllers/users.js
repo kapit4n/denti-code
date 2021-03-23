@@ -13,8 +13,9 @@ exports.getById = async function (req, res) {
   res.json(user)
 }
 
-exports.create = function (req, res) {
-  res.json(req.body)
+exports.create = async function (req, res) {
+  const created = await User.create(req.body)
+  res.json(created)
 }
 
 exports.update = function (req, res) {
