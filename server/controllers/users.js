@@ -19,7 +19,8 @@ exports.create = async function (req, res) {
 }
 
 exports.update = function (req, res) {
-  res.json(req.body)
+  const updated = await User.update(req.body, {id: req.params.id})
+  res.json(updated)
 }
 
 exports.delete = function (req, res) {
