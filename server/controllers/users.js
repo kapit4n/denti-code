@@ -1,9 +1,16 @@
-exports.list = function (req, res) {
-  res.json([{id: 1, name: "User name"}])
+const { Op } = require('sequelize');
+const models = require('../models');
+
+const { User } = models;
+
+exports.list = async function (req, res) {
+  const users = await User.findAll()
+  res.json(users)
 }
 
-exports.getById = function (req, res) {
-  res.json({id: req.params.id, name: "User Name"})
+exports.getById = async function (req, res) {
+  const user = await User.findOne({ where: { id: req.params.id } })
+  res.json(user)
 }
 
 exports.create = function (req, res) {
