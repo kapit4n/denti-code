@@ -18,13 +18,13 @@ exports.create = async function (req, res) {
   res.json(created)
 }
 
-exports.update = function (req, res) {
+exports.update = async function (req, res) {
   const updated = await User.update(req.body, { id: req.params.id })
   res.json(updated)
 }
 
-exports.delete = function (req, res) {
-  const result = User.destroy({ where: { id: req.params.id } })
+exports.delete = async function (req, res) {
+  const result = await User.destroy({ where: { id: req.params.id } })
   res.json(result)
 }
 
