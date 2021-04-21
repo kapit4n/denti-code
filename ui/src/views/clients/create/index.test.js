@@ -3,8 +3,8 @@ import Create from './index';
 
 test('renders react name inputs', () => {
   render(<Create />);
-  const nameInput = screen.queryByPlaceholderText(/Name/i);
-  const ageInput = screen.queryByPlaceholderText(/Age/i);
+  const nameInput = screen.queryByPlaceholderText(/First Name/i);
+  const ageInput = screen.queryByPlaceholderText(/Last Name/i);
   expect(nameInput).toBeTruthy();
   expect(ageInput).toBeTruthy();
 });
