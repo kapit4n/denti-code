@@ -3,10 +3,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import axios from 'axios';
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  age: yup.number().required(),
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
 })
 
 export default function Index() {
@@ -14,13 +15,17 @@ export default function Index() {
     resolver: yupResolver(schema)
   })
 
+  const submitIt = async (data) => {
+    console.log(await axios.post("http://localhost:3000/users", data))
+  }
+
   return (
-    <form onSubmit={handleSubmit(d => console.log(d))} style={{ display: 'block' }}>
+    <form onSubmit={handleSubmit(d => submitIt(d))} style={{ display: 'block' }}>
       <div>
-        <input {...register("name")} placeholder="Name" />
+        <input {...register("firstName")} placeholder="First Name" />
       </div>
       <div>
-        <input {...register("age")} placeholder="Age" />
+        <input {...register("lastName")} placeholder="Last Name" />
       </div>
       <div>
         <input type="submit" />
