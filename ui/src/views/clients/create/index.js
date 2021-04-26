@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
+import TextField from '@material-ui/core/TextField'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
@@ -22,10 +23,10 @@ export default function Index() {
   return (
     <form onSubmit={handleSubmit(d => submitIt(d))} style={{ display: 'block' }}>
       <div>
-        <input {...register("firstName")} placeholder="First Name" />
+        <TextField {...register("firstName")} placeholder="First Name" />
       </div>
       <div>
-        <input {...register("lastName")} placeholder="Last Name" />
+        <TextField {...register("lastName")} placeholder="Last Name" />
       </div>
       <div>
         <input type="submit" />
