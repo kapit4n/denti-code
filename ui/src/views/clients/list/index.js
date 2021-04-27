@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 export default function Index() {
 
   const [clients, setClients] = React.useState([]);
-  const histtory = useHistory()
+  const history = useHistory()
 
   React.useEffect(async () => {
     const list = await axios.get('http://localhost:3000/users/')
@@ -20,7 +20,7 @@ export default function Index() {
   }, [])
 
   const goToItem = (item) => {
-    histtory.push(`/clients/${item.id}`)
+    history.push(`/clients/${item.id}`)
   }
 
   return (

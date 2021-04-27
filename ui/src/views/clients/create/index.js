@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const schema = yup.object().shape({
   firstName: yup.string().required(),
@@ -12,12 +13,15 @@ const schema = yup.object().shape({
 })
 
 export default function Index() {
+  const history = useHistory()
+
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(schema)
   })
 
   const submitIt = async (data) => {
-    console.log(await axios.post("http://localhost:3000/users", data))
+    await axios.post("http://localhost:3000/users", data)
+    history.push(`/clients/list`)
   }
 
   return (
