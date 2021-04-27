@@ -45,7 +45,7 @@ export default function Nav() {
       </AppBar>
       <Drawer variant="persistent" archor="left" open={open} classes={{ paper: classes.drawePaper }}>
         <ul onClick={handleDrawerClose}>
-          {options.map(o => <li style={{ padding: '0.5rem' }} key={o}><Link to={o}>{o}</Link></li>)}
+          {options.map(o => <li style={{ padding: '0.5rem' }} key={o}><Link to={`/${o}`}>{o}</Link></li>)}
         </ul>
       </Drawer>
     </>

@@ -1,6 +1,7 @@
 import './App.css';
 
 import Clients from './views/clients'
+import Doctors from './views/doctors'
 import Login from './views/login'
 
 import {
@@ -20,6 +21,9 @@ function App() {
           <Switch>
             <Route path="/clients">
               <Clients />
+            </Route>
+            <Route path="/doctors">
+              <Doctors />
             </Route>
 
             <Route path="/login">
