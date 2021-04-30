@@ -25,9 +25,9 @@ export default function Index() {
   return (
     <List>
       {clients && clients.map(c => (
-        <ListItem>
+        <ListItem key={c.id}>
           <ListItemText>
-            {c.User ? `${c.User.firstName} ${c.User.lastName}`: ''}
+            {c.Doctor ? `${c.Doctor.firstName} ${c.Doctor.lastName}` : ''}
           </ListItemText>
           <ListItemSecondaryAction>
             <IconButton onClick={() => goToItem(c)}>

@@ -19,7 +19,7 @@ export default function Details() {
 
   return (
     <Card>
-      <CardHeader title={data.User ? `${data.User.firstName} ${data.User.lastName}`: ''} />
+      <CardHeader title={data.ClientFile ? `${data.ClientFile.id}`: ''} />
       <CardContent>
         <div>
           Doctor: {data.Doctor ? `${data.Doctor.firstName} ${data.Doctor.lastName}`: ''}

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
 const schema = yup.object().shape({
-  userId: yup.string().required(),
+  fileId: yup.string().required(),
   doctorId: yup.string().required(),
   description: yup.string().required(),
 })
@@ -28,7 +28,7 @@ export default function Index() {
   return (
     <form onSubmit={handleSubmit(d => submitIt(d))} style={{ display: 'block' }}>
       <div>
-        <TextField {...register("userId")} placeholder="Client" />
+        <TextField {...register("fileId")} placeholder="Client" />
       </div>
       <div>
         <TextField {...register("doctorId")} placeholder="Doctor" />

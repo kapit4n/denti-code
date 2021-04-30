@@ -17,26 +17,30 @@ export default function Details() {
     const result = await axios.get(`http://localhost:3000/users/${id}`)
     const fileResult = await axios.get(`http://localhost:3000/files/${id}`)
     setClient(result.data)
-    setFileInfo(fileResult.data)
+    if (fileResult.data) {
+      setFileInfo(fileResult.data)
+    }
   }, [id])
 
   const createFile = async () => {
     const result = await axios.post(`http://localhost:3000/files`, { userId: client.id })
+    setFileInfo(result.data)
   }
 
   return (
     <Card>
-      <CardHeader title={client.firstName} />
+      <CardHeader title={`${client.firstName} ${client.lastName} `} />
       <CardContent>
         <div>
           {fileInfo.id ? (<div>
             File Number: {fileInfo.id}
+            <ul>
+              {fileInfo.Records.map(r => <li>{`${r.description} ${r.createdAt}`}</li>)}
+            </ul>
           </div>) : (
               <Button onClick={createFile}>Create File</Button>
             )}
         </div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
       </CardContent>
     </Card>
   )

@@ -21,7 +21,7 @@ export default function Index() {
 
   const submitIt = async (data) => {
     await axios.post("http://localhost:3000/users", data)
-    history.push(`/clients/list`)
+    history.push(`/clients`)
   }
 
   return (
