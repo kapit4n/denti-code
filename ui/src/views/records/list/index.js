@@ -13,13 +13,13 @@ export default function Index() {
   const history = useHistory()
 
   React.useEffect(async () => {
-    const list = await axios.get('http://localhost:3000/users/')
+    const list = await axios.get('http://localhost:3000/records/')
     console.log(list.data)
     setClients(list.data)
   }, [])
 
   const goToItem = (item) => {
-    history.push(`/clients/${item.id}`)
+    history.push(`/records/${item.id}`)
   }
 
   return (
@@ -27,7 +27,7 @@ export default function Index() {
       {clients && clients.map(c => (
         <ListItem>
           <ListItemText>
-            {`${c.firstName} ${c.lastName}`}
+            {c.User ? `${c.User.firstName} ${c.User.lastName}`: ''}
           </ListItemText>
           <ListItemSecondaryAction>
             <IconButton onClick={() => goToItem(c)}>

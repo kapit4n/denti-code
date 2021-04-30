@@ -2,6 +2,7 @@ import './App.css';
 
 import Clients from './views/clients'
 import Doctors from './views/doctors'
+import Records from './views/records'
 import Login from './views/login'
 
 import {
@@ -25,7 +26,9 @@ function App() {
             <Route path="/doctors">
               <Doctors />
             </Route>
-
+            <Route path="/records">
+              <Records />
+            </Route>
             <Route path="/login">
               <Login />
             </Route>

@@ -27,9 +27,6 @@ export default function Index() {
         <Route path={`${path}/create`}>
           <Create />
         </Route>
-        <Route path={`${path}/list`}>
-
-        </Route>
         <Route path={`${path}/:id`}>
           <Details />
         </Route>
