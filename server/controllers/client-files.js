@@ -3,12 +3,12 @@ const models = require('../models');
 const { ClientFile, Record } = models;
 
 exports.list = async function (req, res) {
-  const clientFiles = await ClientFile.findAll({include: [Record]})
+  const clientFiles = await ClientFile.findAll()
   res.json(clientFiles)
 }
 
 exports.getById = async function (req, res) {
-  const clientFile = await ClientFile.findOne({ where: { userId: req.params.id } })
+  const clientFile = await ClientFile.findOne({ where: { userId: req.params.id }, include: [Record] })
   res.json(clientFile)
 }
 
