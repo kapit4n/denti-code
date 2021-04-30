@@ -1,9 +1,9 @@
 const models = require('../models');
 
-const { ClientFile } = models;
+const { ClientFile, Record } = models;
 
 exports.list = async function (req, res) {
-  const clientFiles = await ClientFile.findAll()
+  const clientFiles = await ClientFile.findAll({include: [Record]})
   res.json(clientFiles)
 }
 
