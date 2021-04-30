@@ -17,12 +17,12 @@ export default function Index() {
           <Link to={`${url}/create`}>Create</Link>
         </li>
         <li>
-          <Link to={`${url}/list`}>List</Link>
+          <Link to={`${url}`}>List</Link>
         </li>
       </ul>
       <Switch>
         <Route exact path={path}>
-          Create or list doctors
+          <List />
         </Route>
         <Route path={`${path}/create`}>
           <Create />
