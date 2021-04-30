@@ -26,4 +26,3 @@ exports.delete = async function (req, res) {
   const result = await Doctor.destroy({ where: { id: req.params.id } })
   res.json(result)
 }
-

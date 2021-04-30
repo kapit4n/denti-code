@@ -1,10 +1,10 @@
 const { Op } = require('sequelize');
 const models = require('../models');
 
-const { User } = models;
+const { User, ClientFile } = models;
 
 exports.list = async function (req, res) {
-  const users = await User.findAll()
+  const users = await User.findAll({ include: ClientFile })
   res.json(users)
 }
 
