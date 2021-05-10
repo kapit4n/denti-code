@@ -10,8 +10,14 @@ test('example', () => {
   const create = mount(<Create />);
   expect(create.find('input').length).toBe(3)
   expect(create.find('div').length).toBe(7)
-  create.find('input').at(0).simulate('change', { target: { value: "Luis" } });
-  create.find('input').at(1).simulate('change', { target: { value: "Arce" } });
-  // create.find('input').at(2).simulate('click');
-  expect(create.find('input').get(0).value).toBe("Luis")
+
+  const inputName = create.find('input').at(0)
+  inputName.instance().value = "Luis";
+  expect(inputName.instance().value).toEqual('Luis');
+
+  const lastName = create.find('input').at(1)
+  lastName.instance().value = "Arce";
+  expect(lastName.instance().value).toEqual('Arce');
+
+
 })
