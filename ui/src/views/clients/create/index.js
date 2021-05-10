@@ -33,7 +33,7 @@ export default function Index() {
         <TextField {...register("lastName")} placeholder="Last Name" />
       </div>
       <div>
-        <input type="submit" />
+        <input type="submit" value="Submit" />
       </div>
     </form>
   );
