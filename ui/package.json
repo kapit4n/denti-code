@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "expect": "^26.6.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.2.1",

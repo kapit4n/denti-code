@@ -1,13 +1,15 @@
-import Create from './index';
-import TextField from '@material-ui/core/TextField'
+import Create from './main';
 
-import { shallow, mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 configure({ adapter: new Adapter() });
 test('example', () => {
-  const create = mount(<Create />);
+
+  const spy = jest.fn();
+
+  const create = mount(<Create onSubmit={spy} />);
   expect(create.find('input').length).toBe(3)
   expect(create.find('div').length).toBe(7)
 
@@ -19,5 +21,8 @@ test('example', () => {
   lastName.instance().value = "Arce";
   expect(lastName.instance().value).toEqual('Arce');
 
+  create.find('form').at(0).simulate('submit');
+  create.update();
+  expect(spy).toHaveBeenCalled();
 
 })

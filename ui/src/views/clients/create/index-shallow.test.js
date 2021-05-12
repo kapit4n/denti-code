@@ -1,4 +1,4 @@
-import Create from './index';
+import Create from './main';
 import TextField from '@material-ui/core/TextField'
 
 import { shallow, mount, render } from 'enzyme';

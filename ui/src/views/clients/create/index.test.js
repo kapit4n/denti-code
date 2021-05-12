@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Create from './index';
+import Create from './main';
 
 test('renders react name inputs', () => {
   const screen = render(<Create />);
