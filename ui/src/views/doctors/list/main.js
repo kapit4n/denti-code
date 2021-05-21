@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 
 import { List, ListItem, ListItemText, ListItemSecondaryAction, InconButton, IconButton } from '@material-ui/core'
 
