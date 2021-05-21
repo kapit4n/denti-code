@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     maxWidth: '40rem',
-    width: '100%'
+    width: '100%',
+    padding: '0 1rem'
   }
 }));
 

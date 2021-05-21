@@ -10,8 +10,8 @@ test('example', () => {
   const spy = jest.fn();
 
   const create = mount(<Create onSubmit={spy} />);
-  expect(create.find('input').length).toBe(2)
-  expect(create.find('div').length).toBe(7)
+  expect(create.find('input').length).toBe(7)
+  expect(create.find('div').length).toBe(23)
 
   const inputName = create.find('input').at(0)
   inputName.instance().value = "Luis";
@@ -22,7 +22,7 @@ test('example', () => {
   expect(lastName.instance().value).toEqual('Arce');
 
   create.find('form').at(0).simulate('submit');
-  create.update();
+  //create.update();
   //expect(spy).toHaveBeenCalled();
 
 })
