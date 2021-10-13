@@ -1,7 +1,8 @@
 import React from 'react';
 import { Modal, DialogTitle, DialogContent } from '@material-ui/core'
+import { useParams } from 'react-router-dom';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,23 +13,52 @@ const schema = yup.object().shape({
   description: yup.string().required(),
 })
 
-
 export default function ({ handleClose, open }) {
-  const { register, handleSubmit } = useForm({
-    resolver: yupResolver(schema)
+
+  const { id } = useParams();
+
+  const { control, handleSubmit } = useForm({
+    defaultValues: { doctorId: id, description: '' },
+    resolver: yupResolver(schema),
   })
 
   return (
     <Modal open={open} onClose={handleClose} aria-labelledby="simple-dialog-title" style>
-      <div style={{ background: '#800080', padding: '10rem' }}>
+      <div style={{ background: 'white', padding: '10rem' }}>
         <DialogTitle id="modal">Create new Record</DialogTitle>
         <DialogContent>
           <form style={{ padding: '5rem' }}>
             <div>
-              <TextField {...register("doctorId")} placeholder="Doctor" />
+              <Controller
+                name="doctorId"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    label="Doctor"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+                rules={{ required: 'Doctor required' }}
+              />
             </div>
             <div>
-              <TextField {...register("description")} placeholder="Description" />
+              <Controller
+                name="description"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    label="Description"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+                rules={{ required: 'Description name required' }}
+              />
             </div>
           </form>
           <Button onClick={handleSubmit(d => handleClose(d))}>Save</Button>
