@@ -23,7 +23,7 @@ export default function Index({ doctors, fileId, handleCloseDialog }) {
   })
 
   const submitIt = async (data) => {
-    const result = await axios.post("http://localhost:3000/records", { ...data, fileId })
+    const result = await axios.post(`${process.env.REACT_APP_API_PATH}/records`, { ...data, fileId })
     if (handleCloseDialog) {
       handleCloseDialog(result)
     } else {

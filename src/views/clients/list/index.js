@@ -8,12 +8,11 @@ import AddIcon from '@material-ui/icons/ArrowForward'
 import { useHistory } from "react-router-dom";
 
 export default function Index() {
-
   const [clients, setClients] = React.useState([]);
   const history = useHistory()
 
   React.useEffect(async () => {
-    const list = await axios.get('http://localhost:3000/users/')
+    const list = await axios.get(`${process.env.REACT_APP_API_PATH}/users/`)
     setClients(list.data)
   }, [])
 

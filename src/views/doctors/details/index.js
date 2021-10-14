@@ -10,7 +10,7 @@ export default function Details() {
   const [data, setData] = React.useState({})
 
   useEffect(async () => {
-    const result = await axios.get(`http://localhost:3000/doctors/${id}`)
+    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/doctors/${id}`)
     setData(result.data)
   }, [id])
 

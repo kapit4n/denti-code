@@ -21,7 +21,7 @@ export default function Index() {
   })
 
   const submitIt = async (data) => {
-    await axios.post("http://localhost:3000/doctors", data)
+    await axios.post(`${process.env.REACT_APP_API_PATH}/doctors`, data)
     history.push(`/doctors/list`)
   }
 

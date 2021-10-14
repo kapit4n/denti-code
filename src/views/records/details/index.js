@@ -7,12 +7,11 @@ import CardHeader from '@material-ui/core/CardHeader'
 import axios from 'axios'
 
 export default function Details() {
-
   const { id } = useParams();
   const [data, setData] = React.useState({})
 
   useEffect(async () => {
-    const result = await axios.get(`http://localhost:3000/records/${id}`)
+    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/records/${id}`)
     setData(result.data)
   }, [id])
 

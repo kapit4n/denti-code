@@ -13,7 +13,7 @@ export default function Index() {
   const history = useHistory()
 
   React.useEffect(async () => {
-    const list = await axios.get('http://localhost:3000/records/')
+    const list = await axios.get(`${process.env.REACT_APP_API_PATH}/records/`)
     setClients(list.data)
   }, [])
 

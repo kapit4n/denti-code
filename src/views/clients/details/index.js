@@ -28,13 +28,13 @@ export default function Details() {
   };
 
   useEffect(async () => {
-    const result = await axios.get(`http://localhost:3000/doctors`)
+    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/doctors`)
     setDoctors(result.data)
   }, [])
 
   useEffect(async () => {
-    const result = await axios.get(`http://localhost:3000/users/${id}`)
-    const fileResult = await axios.get(`http://localhost:3000/files/${id}`)
+    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/users/${id}`)
+    const fileResult = await axios.get(`${process.env.REACT_APP_API_PATH}/files/${id}`)
     setClient(result.data)
     if (fileResult.data) {
       setFileInfo(fileResult.data)
@@ -42,7 +42,7 @@ export default function Details() {
   }, [id])
 
   const createFile = async () => {
-    const result = await axios.post(`http://localhost:3000/files`, { userId: client.id })
+    const result = await axios.post(`${process.env.REACT_APP_API_PATH}/files`, { userId: client.id })
     setFileInfo(result.data)
   }
 
@@ -51,7 +51,7 @@ export default function Details() {
       <CardHeader title={`${client.firstName} ${client.lastName} `} />
       <CardContent>
         <div>
-          <RecordModal handleClose={handleClose} open={open} doctors={doctors} fileId={fileInfo.id} redirectTo={`http://localhost:3000/users/${id}`}></RecordModal>
+          <RecordModal handleClose={handleClose} open={open} doctors={doctors} fileId={fileInfo.id} redirectTo={`${process.env.REACT_APP_API_PATH}/users/${id}`}></RecordModal>
           {fileInfo.id ? (<div>
             File Number: {fileInfo.id}
             <ul>
