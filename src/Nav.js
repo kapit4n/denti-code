@@ -6,6 +6,9 @@ import AppBar from '@material-ui/core/AppBar';
 import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton'
 import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import { UserContext } from './App'
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -17,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function Nav() {
+  const { user, setUser } = React.useContext(UserContext);
+  const history = useHistory()
 
   const classes = useStyles();
   const [open, setOpen] = useState(true);
@@ -38,9 +43,19 @@ export default function Nav() {
           <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start">
             <MenuIcon />
           </IconButton>
-          <div style={{ padding: '1.5rem 2rem' }}>
-            <Link to="login">Login</Link>
-          </div>
+          {user && user.firstName ? (
+            <div style={{ padding: '1.5rem 2rem' }}>
+              <span>{user.firstName}</span>
+              <Button onClick={() => {
+                setUser({})
+                history.push('/')
+              }}>Logout</Button>
+            </div>
+          ) : (
+            <div style={{ padding: '1.5rem 2rem' }}>
+              <Link to="login">Login</Link>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer variant="persistent" archor="left" open={open} classes={{ paper: classes.drawePaper }}>

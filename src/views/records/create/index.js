@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import Select from '@material-ui/core/Select';
 import { MenuItem } from '@material-ui/core';
+import { UserContext } from '../../../App'
 
 const schema = yup.object().shape({
   doctorId: yup.string().required(),
@@ -16,6 +17,7 @@ const schema = yup.object().shape({
 
 export default function Index({ doctors, fileId, handleCloseDialog }) {
   const history = useHistory()
+  const { user, setUser } = React.useContext(UserContext);
 
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(schema),
