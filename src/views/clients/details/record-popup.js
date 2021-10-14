@@ -3,17 +3,17 @@ import { Modal, DialogTitle, DialogContent } from '@material-ui/core'
 import { useParams } from 'react-router-dom';
 
 import { useForm, Controller } from 'react-hook-form';
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import RecordCreate from '../../records/create/index'
 
 const schema = yup.object().shape({
   doctorId: yup.string().required(),
   description: yup.string().required(),
 })
 
-export default function ({ handleClose, open }) {
+export default function ({ handleClose, open, doctors, fileId, redirectTo }) {
 
   const { id } = useParams();
 
@@ -27,8 +27,15 @@ export default function ({ handleClose, open }) {
       <div style={{ background: 'white', padding: '10rem' }}>
         <DialogTitle id="modal">Create new Record</DialogTitle>
         <DialogContent>
-          <form style={{ padding: '5rem' }}>
-            <div>
+          <RecordCreate doctors={doctors} fileId={fileId} handleCloseDialog={handleClose} />
+        </DialogContent>
+      </div>
+    </Modal>
+  )
+}
+
+/*
+  <div>
               <Controller
                 name="doctorId"
                 control={control}
@@ -60,10 +67,4 @@ export default function ({ handleClose, open }) {
                 rules={{ required: 'Description name required' }}
               />
             </div>
-          </form>
-          <Button onClick={handleSubmit(d => handleClose(d))}>Save</Button>
-        </DialogContent>
-      </div>
-    </Modal>
-  )
-}
+*/

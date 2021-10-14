@@ -6,32 +6,37 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import Select from '@material-ui/core/Select';
+import { MenuItem } from '@material-ui/core';
 
 const schema = yup.object().shape({
-  fileId: yup.string().required(),
   doctorId: yup.string().required(),
   description: yup.string().required(),
 })
 
-export default function Index() {
+export default function Index({ doctors, fileId, handleCloseDialog }) {
   const history = useHistory()
 
   const { register, handleSubmit } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    defaultValues: { fileId }
   })
 
   const submitIt = async (data) => {
-    await axios.post("http://localhost:3000/records", data)
-    history.push(`/records`)
+    const result = await axios.post("http://localhost:3000/records", { ...data, fileId })
+    if (handleCloseDialog) {
+      handleCloseDialog(result)
+    } else {
+      history.push(`/records`)
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit(d => submitIt(d))} style={{ display: 'block' }}>
+    <form onSubmit={handleSubmit(submitIt)} style={{ display: 'block' }}>
       <div>
-        <TextField {...register("fileId")} placeholder="Client" />
-      </div>
-      <div>
-        <TextField {...register("doctorId")} placeholder="Doctor" />
+        <Select {...register("doctorId")} placeholder="Doctor" >
+          {doctors.map(d => <MenuItem value={d.id} key={d.id}>{d.firstName}</MenuItem>)}
+        </Select>
       </div>
       <div>
         <TextField {...register("description")} placeholder="Description" />

@@ -10,6 +10,7 @@ test('example', () => {
   const spy = jest.fn();
 
   const create = mount(<Create onSubmit={spy} />);
+
   expect(create.find('input').length).toBe(7)
   expect(create.find('div').length).toBe(23)
 

@@ -13,7 +13,6 @@ export default function Details() {
 
   useEffect(async () => {
     const result = await axios.get(`http://localhost:3000/records/${id}`)
-    console.log(result)
     setData(result.data)
   }, [id])
 

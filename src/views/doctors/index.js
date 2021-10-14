@@ -8,14 +8,17 @@ import Details from './details';
 
 export default function Index() {
 
-  const { url, path } = useRouteMatch()
+  const { url, path, isExact } = useRouteMatch()
 
   return (
     <div>
       <ul>
-        <li>
-          <Link to={`${url}/create`}>Create</Link>
-        </li>
+        {isExact && (
+          <li>
+            <Link to={`${url}/create`}>Create</Link>
+          </li>
+
+        )}
         <li>
           <Link to={`${url}`}>List</Link>
         </li>

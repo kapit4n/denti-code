@@ -5,7 +5,6 @@ import { Button } from '@material-ui/core'
 export default function Index() {
 
   const onSubmit = () => {
-    console.log("It should go to dashboard")
   }
 
   return (

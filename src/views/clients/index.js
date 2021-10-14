@@ -5,31 +5,34 @@ import { Link, Switch, useRouteMatch, Route } from 'react-router-dom';
 import List from './list'
 import Create from './create'
 import Details from './details';
+import Breadcrumbs from '../../components/breadcrumb'
+
 
 export default function Index() {
 
-  const { url, path } = useRouteMatch()
+  const { url, path, isExact } = useRouteMatch()
 
   return (
     <div>
-      <ul>
-        <li>
-          <Link to={`${url}/create`}>Create</Link>
-        </li>
-        <li>
-          <Link to={`${url}`}>List</Link>
-        </li>
-      </ul>
+      <Breadcrumbs items={isExact ? [
+        { label: 'list', route: `${url}` },
+        { label: 'create', route: `${url}create` },
+      ] : [
+        { label: 'list', route: `${url}` }
+      ]} />
+
       <Switch>
         <Route exact path={path}>
           <List />
         </Route>
+
         <Route path={`${path}/create`}>
           <Create />
         </Route>
-        <Route path={`${path}/list`}>
 
+        <Route path={`${path}/list`}>
         </Route>
+
         <Route path={`${path}/:id`}>
           <Details />
         </Route>

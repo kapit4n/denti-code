@@ -13,6 +13,7 @@ export default function Details() {
 
   const { id } = useParams();
   const [client, setClient] = React.useState({})
+  const [doctors, setDoctors] = React.useState([])
   const [fileInfo, setFileInfo] = React.useState({})
 
   const [open, setOpen] = React.useState(false);
@@ -21,12 +22,15 @@ export default function Details() {
     setOpen(true);
   };
 
-  const handleClose = async (value) => {
+  const handleClose = async (result) => {
     setOpen(false);
-    const result = await axios.post(`http://localhost:3000/records`, { ...value, fileId: fileInfo.id })
     setFileInfo(s => ({ ...s, Records: [...s.Records, result.data] }))
-
   };
+
+  useEffect(async () => {
+    const result = await axios.get(`http://localhost:3000/doctors`)
+    setDoctors(result.data)
+  }, [])
 
   useEffect(async () => {
     const result = await axios.get(`http://localhost:3000/users/${id}`)
@@ -47,7 +51,7 @@ export default function Details() {
       <CardHeader title={`${client.firstName} ${client.lastName} `} />
       <CardContent>
         <div>
-          <RecordModal handleClose={handleClose} open={open}></RecordModal>
+          <RecordModal handleClose={handleClose} open={open} doctors={doctors} fileId={fileInfo.id} redirectTo={`http://localhost:3000/users/${id}`}></RecordModal>
           {fileInfo.id ? (<div>
             File Number: {fileInfo.id}
             <ul>
@@ -55,8 +59,8 @@ export default function Details() {
               {fileInfo.Records.map(r => <li>{`${r.description} ${r.createdAt}`}</li>)}
             </ul>
           </div>) : (
-              <Button onClick={createFile}>Create File</Button>
-            )}
+            <Button onClick={createFile}>Create File</Button>
+          )}
         </div>
       </CardContent>
     </Card>

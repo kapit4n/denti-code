@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Nav() {
 
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const options = ['doctors', 'clients', 'records', 'bookings'];
 
@@ -33,7 +33,7 @@ export default function Nav() {
 
   return (
     <>
-      <AppBar >
+      <AppBar>
         <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
           <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start">
             <MenuIcon />
@@ -44,9 +44,22 @@ export default function Nav() {
         </Toolbar>
       </AppBar>
       <Drawer variant="persistent" archor="left" open={open} classes={{ paper: classes.drawePaper }}>
-        <ul onClick={handleDrawerClose}>
-          {options.map(o => <li style={{ padding: '0.5rem' }} key={o}><Link to={`/${o}`}>{o}</Link></li>)}
+        <IconButton color="inherit" aria-label="close drawer" onClick={handleDrawerClose} edge="start">
+          <MenuIcon />
+        </IconButton>
+
+        <ul onClick={handleDrawerClose} style={{ marginBlock: 0, paddingInline: '0.5rem' }}>
+          {
+            options.map(o => <li style={{
+              listStyle: 'none'
+            }} key={o}>
+              <div style={{ padding: '1rem 0.3rem', borderBottom: '1px solid' }}>
+                <Link to={`/${o}`} style={{ fontStyle: 'none', textDecoration: 'none' }}>{o}</Link>
+              </div>
+            </li>)
+          }
         </ul>
+
       </Drawer>
     </>
   )

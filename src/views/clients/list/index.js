@@ -14,7 +14,6 @@ export default function Index() {
 
   React.useEffect(async () => {
     const list = await axios.get('http://localhost:3000/users/')
-    console.log(list.data)
     setClients(list.data)
   }, [])
 
