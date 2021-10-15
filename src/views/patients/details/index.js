@@ -23,7 +23,11 @@ export default function Details() {
 
   const handleClose = async (result) => {
     setOpen(false);
-    setFileInfo(s => ({ ...s, Records: [...s.Records, result.data] }))
+    if (fileInfo.Records) {
+      setFileInfo(s => ({ ...s, Records: [...s.Records, result.data] }))
+    } else {
+      setFileInfo(s => ({ ...s, Records: [result.data] }))
+    }
   };
 
   useEffect(async () => {
@@ -35,9 +39,6 @@ export default function Details() {
     const result = await axios.get(`${process.env.REACT_APP_API_PATH}/patients/${id}`)
     setClient(result.data)
     const fileResult = await axios.get(`${process.env.REACT_APP_API_PATH}/files/${id}`)
-    console.log(fileResult)
-    console.log(fileResult)
-    console.log(fileResult)
     if (fileResult.data) {
       setFileInfo(fileResult.data)
     }
