@@ -17,7 +17,6 @@ export default function Index() {
           <li>
             <Link to={`${url}/create`}>Create</Link>
           </li>
-
         )}
         <li>
           <Link to={`${url}`}>List</Link>

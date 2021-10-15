@@ -24,7 +24,7 @@ export default function Index({ doctors, fileId, handleCloseDialog }) {
   })
 
   const submitIt = async (data) => {
-    const result = await axios.post(`${process.env.REACT_APP_API_PATH}/records`, { ...data, fileId })
+    const result = await axios.post(`${process.env.REACT_APP_API_PATH}/records`, { ...data, fileId, doctorId: user.id })
     if (handleCloseDialog) {
       handleCloseDialog(result)
     } else {
@@ -42,7 +42,7 @@ export default function Index({ doctors, fileId, handleCloseDialog }) {
         </div>
       )}
       <div>
-        <TextField {...register("description")} placeholder="Description" fullWidth/>
+        <TextField {...register("description")} placeholder="Description" fullWidth />
       </div>
       <div style={{ padding: '1rem' }}>
         <Button>Cancel</Button>

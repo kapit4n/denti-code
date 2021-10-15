@@ -30,7 +30,7 @@ export default function Nav() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const options = ['doctors', 'clients', 'records', 'bookings'];
+  const options = ['doctors', 'patients', 'records', 'bookings'];
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -51,7 +51,7 @@ export default function Nav() {
           )}
           {matches && (
             <div style={{ display: 'flex' }}>
-              <Link to={`/clients`}>Clients</Link>
+              <Link to={`/patients`}>Patients</Link>
               <div style={{ borderLeft: '2px solid white', height: '1rem', margin: '0 0.5rem' }}></div>
               <Link to={`/doctors`}>Doctors</Link>
             </div>

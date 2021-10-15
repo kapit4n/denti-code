@@ -1,5 +1,5 @@
 import React from 'react'
-import Clients from './views/clients'
+import Patients from './views/patients'
 import Doctors from './views/doctors'
 import Records from './views/records'
 import Login from './views/login'
@@ -36,8 +36,8 @@ function App() {
           <main style={{ position: 'relative', top: '5rem' }}>
             <Switch>
               <Route exact path="/" component={Dashboard} />
-              <Route path="/clients">
-                <Clients />
+              <Route path="/patients">
+                <Patients />
               </Route>
               <Route path="/doctors">
                 <Doctors />

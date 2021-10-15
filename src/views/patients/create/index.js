@@ -15,8 +15,8 @@ export default function Index() {
   const history = useHistory()
 
   const submitIt = async (data) => {
-    await axios.post(`${process.env.REACT_APP_API_PATH}/users`, data)
-    history.push(`/clients`)
+    await axios.post(`${process.env.REACT_APP_API_PATH}/patients`, data)
+    history.push(`/patients`)
   }
 
   return (
