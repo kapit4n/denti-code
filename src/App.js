@@ -30,28 +30,30 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <UserContext.Provider value={value}>
-          <Nav />
-          <main style={{ position: 'relative', top: '5rem' }}>
-            <Switch>
-              <Route exact path="/" component={Dashboard} />
-              <Route path="/patients">
-                <Patients />
-              </Route>
-              <Route path="/doctors">
-                <Doctors />
-              </Route>
-              <Route path="/records">
-                <Records />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-            </Switch>
-          </main>
-        </UserContext.Provider>
-      </Router>
+      <div className="page-container">
+        <Router>
+          <UserContext.Provider value={value}>
+            <Nav />
+            <main style={{ position: 'relative', top: '5rem' }}>
+              <Switch>
+                <Route exact path="/" component={Dashboard} />
+                <Route path="/patients">
+                  <Patients />
+                </Route>
+                <Route path="/doctors">
+                  <Doctors />
+                </Route>
+                <Route path="/records">
+                  <Records />
+                </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
+              </Switch>
+            </main>
+          </UserContext.Provider>
+        </Router>
+      </div>
     </div>
   );
 }

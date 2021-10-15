@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Link, Switch, useRouteMatch, Route } from 'react-router-dom';
-
+import { Switch, useRouteMatch, Route } from 'react-router-dom';
 import List from './list'
 import Create from './create'
 import Details from './details';
@@ -10,31 +9,25 @@ import Breadcrumbs from '../../components/breadcrumb'
 
 export default function Index() {
 
-  const { url, path, isExact } = useRouteMatch()
+  const { path } = useRouteMatch()
+
+  const [breadcrumbs, setBreadcrumbs] = React.useState([]);
 
   return (
     <div>
-      <Breadcrumbs items={isExact ? [
-        { label: 'list', route: `${url}` },
-        { label: 'create', route: `${url}create` },
-      ] : [
-        { label: 'list', route: `${url}` }
-      ]} />
+      <Breadcrumbs items={breadcrumbs} />
 
       <Switch>
         <Route exact path={path}>
-          <List />
+          <List setBreadcrumbs={setBreadcrumbs} />
         </Route>
 
         <Route path={`${path}/create`}>
-          <Create />
-        </Route>
-
-        <Route path={`${path}/list`}>
+          <Create setBreadcrumbs={setBreadcrumbs} />
         </Route>
 
         <Route path={`${path}/:id`}>
-          <Details />
+          <Details setBreadcrumbs={setBreadcrumbs} />
         </Route>
       </Switch>
     </div>

@@ -1,13 +1,23 @@
 import React from 'react'
 import axios from 'axios'
 
-import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material/'
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 
 import AddIcon from '@material-ui/icons/ArrowForward'
+import './list.css';
 
 import { useHistory } from "react-router-dom";
 
-export default function Index() {
+export default function Index({ setBreadcrumbs }) {
   const [clients, setClients] = React.useState([]);
   const history = useHistory()
 
@@ -20,19 +30,49 @@ export default function Index() {
     history.push(`/patients/${item.id}`)
   }
 
+  const goToCreate = () => {
+    history.push(`/patients/create`)
+  }
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST' }
+    ])
+  }, [])
+
   return (
-    <List>
+    <List className='list'>
+      <Button onClick={goToCreate}>New</Button>
       {clients && clients.map(c => (
-        <ListItem>
-          <ListItemText>
-            {`${c.firstName} ${c.lastName}`}
-          </ListItemText>
-          <ListItemSecondaryAction>
-            <IconButton onClick={() => goToItem(c)}>
-              <AddIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>))}
+        <>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+              <Avatar alt={c.firstName} src={c.img} />
+            </ListItemAvatar>
+            <ListItemText
+              primary={`${c.firstName} ${c.lastName}`}
+              secondary={
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {c.profession}
+                </Typography>
+              }
+            >
+            </ListItemText>
+            <ListItemSecondaryAction>
+              <IconButton onClick={() => goToItem(c)}>
+                <AddIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+          <Divider variant="inset" component="li" />
+        </>
+      ))}
     </List>
+
   )
 }
