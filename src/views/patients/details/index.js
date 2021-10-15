@@ -5,11 +5,16 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import axios from 'axios'
-import { Button } from '@mui/material/';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
 
 import RecordModal from './record-popup'
 
-export default function Details() {
+export default function Details({ setBreadcrumbs }) {
   const { id } = useParams();
   const [client, setClient] = React.useState({})
   const [doctors, setDoctors] = React.useState([])
@@ -29,6 +34,14 @@ export default function Details() {
       setFileInfo(s => ({ ...s, Records: [result.data] }))
     }
   };
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST', route: "/patients" },
+      { label: 'DETAILS' }
+    ])
+  }, [])
+
 
   useEffect(async () => {
     const result = await axios.get(`${process.env.REACT_APP_API_PATH}/doctors`)
@@ -58,10 +71,27 @@ export default function Details() {
           <RecordModal handleClose={handleClose} open={open} doctors={doctors} fileId={fileInfo.id}></RecordModal>
           {fileInfo.id ? (<div>
             File Number: {fileInfo.id}
-            <ul>
+            <List>
               <li><Button onClick={handleClickOpen}>Add</Button></li>
-              {fileInfo.Records && fileInfo.Records.map(r => <li>{`${r.description} ${r.createdAt}`}</li>)}
-            </ul>
+              {fileInfo.Records && fileInfo.Records.map(r => <>
+                <ListItem alignItems="flex-start">
+                  <ListItemText
+                    primary={`${r.description}`}
+                    secondary={
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {r.createdAt}
+                      </Typography>
+                    }
+                  >
+                  </ListItemText></ListItem>
+                <Divider variant="inset" component="li" style={{ marginLeft: 0 }} />
+              </>)}
+            </List>
           </div>) : (
             <Button onClick={createFile}>Create File</Button>
           )}
