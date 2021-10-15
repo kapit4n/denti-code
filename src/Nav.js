@@ -66,7 +66,7 @@ export default function Nav() {
             </div>
           ) : (
             <div style={{ padding: '1.5rem 2rem' }}>
-              <Link to="login">Login</Link>
+              <Link to="/login">Login</Link>
             </div>
           )}
         </Toolbar>
