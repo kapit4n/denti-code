@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core'
+import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material/'
 
 import AddIcon from '@material-ui/icons/ArrowForward'
 

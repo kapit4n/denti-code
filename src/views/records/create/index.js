@@ -1,17 +1,16 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import TextField from '@material-ui/core/TextField'
+import TextField from '@mui/material/TextField'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-import Select from '@material-ui/core/Select';
-import { MenuItem } from '@material-ui/core';
+import Select from '@mui/material/Select';
+import { MenuItem, Button } from '@mui/material/';
 import { UserContext } from '../../../App'
 
 const schema = yup.object().shape({
-  doctorId: yup.string().required(),
   description: yup.string().required(),
 })
 
@@ -35,16 +34,19 @@ export default function Index({ doctors, fileId, handleCloseDialog }) {
 
   return (
     <form onSubmit={handleSubmit(submitIt)} style={{ display: 'block' }}>
-      <div>
-        <Select {...register("doctorId")} placeholder="Doctor" >
-          {doctors.map(d => <MenuItem value={d.id} key={d.id}>{d.firstName}</MenuItem>)}
-        </Select>
-      </div>
+      {user && user.isAdmin && (
+        <div>
+          <Select {...register("doctorId")} placeholder="Doctor" >
+            {doctors.map(d => <MenuItem value={d.id} key={d.id}>{d.firstName}</MenuItem>)}
+          </Select>
+        </div>
+      )}
       <div>
         <TextField {...register("description")} placeholder="Description" />
       </div>
-      <div>
-        <input type="submit" />
+      <div style={{ padding: '1rem' }}>
+        <Button>Cancel</Button>
+        <Button type="submit" color="primary">Save</Button>
       </div>
     </form>
   );

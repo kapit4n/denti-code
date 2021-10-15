@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme'
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import {Card } from '@material-ui/core'
+import {Card } from '@mui/material/'
 jest.mock('axios');
 
 Enzyme.configure({ adapter: new Adapter() });

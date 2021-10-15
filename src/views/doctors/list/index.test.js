@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import sinon from 'sinon'
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, InconButton, IconButton } from '@material-ui/core'
+import { List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, InconButton, IconButton } from '@mui/material/'
 import axios from 'axios';
 jest.mock('axios');
 

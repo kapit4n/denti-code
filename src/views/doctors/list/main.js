@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { List, ListItem, ListItemText, ListItemSecondaryAction, InconButton, IconButton } from '@material-ui/core'
+import { List, ListItem, ListItemText, ListItemSecondaryAction, InconButton, IconButton } from '@mui/material/'
 
 import AddIcon from '@material-ui/icons/ArrowForward'
 

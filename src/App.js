@@ -3,15 +3,15 @@ import Clients from './views/clients'
 import Doctors from './views/doctors'
 import Records from './views/records'
 import Login from './views/login'
-
-import './App.css';
-
+import Dashboard from './views/dashboard'
 
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from "react-router-dom"
+
+import './App.css';
 
 import Nav from './Nav'
 
@@ -31,6 +31,7 @@ function App() {
           <Nav />
           <main style={{ position: 'relative', top: '5rem' }}>
             <Switch>
+              <Route exact path="/" component={Dashboard} />
               <Route path="/clients">
                 <Clients />
               </Route>

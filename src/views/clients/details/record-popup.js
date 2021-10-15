@@ -1,9 +1,9 @@
 import React from 'react';
-import { Modal, DialogTitle, DialogContent } from '@material-ui/core'
+import { Modal, DialogTitle, DialogContent } from '@mui/material/'
 import { useParams } from 'react-router-dom';
 
 import { useForm, Controller } from 'react-hook-form';
-import Button from '@material-ui/core/Button'
+import Button from '@mui/material/Button'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import RecordCreate from '../../records/create/index'
@@ -24,7 +24,7 @@ export default function ({ handleClose, open, doctors, fileId, redirectTo }) {
 
   return (
     <Modal open={open} onClose={handleClose} aria-labelledby="simple-dialog-title" style>
-      <div style={{ background: 'white', padding: '10rem' }}>
+      <div style={{ background: 'white', padding: '3rem' }}>
         <DialogTitle id="modal">Create new Record</DialogTitle>
         <DialogContent>
           <RecordCreate doctors={doctors} fileId={fileId} handleCloseDialog={handleClose} />
