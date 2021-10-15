@@ -28,13 +28,13 @@ export default function Index() {
   return (
     <form onSubmit={handleSubmit(d => submitIt(d))} style={{ display: 'block' }}>
       <div>
-        <TextField {...register("firstName")} placeholder="First Name" />
+        <TextField {...register("firstName")} placeholder="First Name" fullWidth />
       </div>
       <div>
-        <TextField {...register("lastName")} placeholder="Last Name" />
+        <TextField {...register("lastName")} placeholder="Last Name" fullWidth />
       </div>
       <div>
-        <TextField {...register("speciality")} placeholder="Speciality" />
+        <TextField {...register("speciality")} placeholder="Speciality" fullWidth />
       </div>
       <div>
         <input type="submit" />

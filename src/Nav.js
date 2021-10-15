@@ -9,6 +9,8 @@ import Toolbar from '@mui/material/Toolbar'
 import Button from '@mui/material/Button'
 import { UserContext } from './App'
 import { useHistory } from "react-router-dom";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 import { makeStyles } from '@mui/styles';
 
@@ -22,9 +24,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Nav() {
   const { user, setUser } = React.useContext(UserContext);
   const history = useHistory()
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const options = ['doctors', 'clients', 'records', 'bookings'];
 
@@ -40,9 +44,18 @@ export default function Nav() {
     <>
       <AppBar>
         <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start">
-            <MenuIcon />
-          </IconButton>
+          {!matches && (
+            <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start">
+              <MenuIcon />
+            </IconButton>
+          )}
+          {matches && (
+            <div style={{ display: 'flex' }}>
+              <Link to={`/clients`}>Clients</Link>
+              <div style={{ borderLeft: '2px solid white', height: '1rem', margin: '0 0.5rem' }}></div>
+              <Link to={`/doctors`}>Doctors</Link>
+            </div>
+          )}
           {user && user.firstName ? (
             <div style={{ padding: '1.5rem 2rem' }}>
               <span>{user.firstName}</span>
@@ -58,24 +71,25 @@ export default function Nav() {
           )}
         </Toolbar>
       </AppBar>
-      <Drawer variant="persistent" archor="left" open={open} classes={{ paper: classes.drawePaper }}>
-        <IconButton color="inherit" aria-label="close drawer" onClick={handleDrawerClose} edge="start">
-          <MenuIcon />
-        </IconButton>
+      {!matches && (
+        <Drawer variant="persistent" archor="left" open={open} classes={{ paper: classes.drawePaper }}>
+          <IconButton color="inherit" aria-label="close drawer" onClick={handleDrawerClose} edge="start">
+            <MenuIcon />
+          </IconButton>
 
-        <ul onClick={handleDrawerClose} style={{ marginBlock: 0, paddingInline: '0.5rem' }}>
-          {
-            options.map(o => <li style={{
-              listStyle: 'none'
-            }} key={o}>
-              <div style={{ padding: '1rem 0.3rem', borderBottom: '1px solid' }}>
-                <Link to={`/${o}`} style={{ fontStyle: 'none', textDecoration: 'none' }}>{o}</Link>
-              </div>
-            </li>)
-          }
-        </ul>
-
-      </Drawer>
+          <ul onClick={handleDrawerClose} style={{ marginBlock: 0, paddingInline: '0.5rem' }}>
+            {
+              options.map(o => <li style={{
+                listStyle: 'none'
+              }} key={o}>
+                <div style={{ padding: '1rem 0.3rem', borderBottom: '1px solid' }}>
+                  <Link to={`/${o}`} style={{ fontStyle: 'none', textDecoration: 'none' }}>{o}</Link>
+                </div>
+              </li>)
+            }
+          </ul>
+        </Drawer>
+      )}
     </>
   )
 }

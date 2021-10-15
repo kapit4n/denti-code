@@ -4,6 +4,8 @@ import Doctors from './views/doctors'
 import Records from './views/records'
 import Login from './views/login'
 import Dashboard from './views/dashboard'
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 import {
   BrowserRouter as Router,
@@ -23,6 +25,8 @@ export const UserContext = React.createContext(
 function App() {
   const [user, setUser] = React.useState({});
   const value = { user, setUser };
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <div className="App">

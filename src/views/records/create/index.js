@@ -42,7 +42,7 @@ export default function Index({ doctors, fileId, handleCloseDialog }) {
         </div>
       )}
       <div>
-        <TextField {...register("description")} placeholder="Description" />
+        <TextField {...register("description")} placeholder="Description" fullWidth/>
       </div>
       <div style={{ padding: '1rem' }}>
         <Button>Cancel</Button>
