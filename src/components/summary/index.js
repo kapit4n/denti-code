@@ -22,7 +22,7 @@ export default function ({ items }) {
                   {i.description}
                 </div>
               </Typography>
-              <Link to={`/patients/${i.ClientFile.Patient.id}`}>{i.ClientFile.Patient.firstName}</Link>
+              <Link to={`/patients/${i.ClientFile?.Patient?.id}`}>{i.ClientFile.Patient?.firstName}</Link>
             </>} />
           </ListItem>
           <Divider variant="inset" component="li" style={{ marginLeft: 0 }} />
