@@ -52,9 +52,6 @@ export default function Index({ setBreadcrumbs }) {
       {clients && clients.map(c => (
         <>
           <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar alt={c.firstName} src={c.img} />
-            </ListItemAvatar>
             <ListItemText
               primary={`${c.firstName} ${c.lastName}`}
               secondary={
@@ -80,7 +77,7 @@ export default function Index({ setBreadcrumbs }) {
 
             </ListItemSecondaryAction>
           </ListItem>
-          <Divider variant="inset" component="li" />
+          <Divider variant="inset" component="li" style={{ marginLeft: 0 }} />
         </>
       ))}
     </List>
