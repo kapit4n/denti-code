@@ -12,7 +12,8 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 
-import AddIcon from '@material-ui/icons/ArrowForward'
+import OpenIcon from '@material-ui/icons/FolderOpen'
+import RemoveIcon from '@material-ui/icons/DeleteForever'
 import './list.css';
 
 import { useHistory } from "react-router-dom";
@@ -32,6 +33,11 @@ export default function Index({ setBreadcrumbs }) {
 
   const goToCreate = () => {
     history.push(`/patients/create`)
+  }
+
+  const onRemove = async (id) => {
+    await axios.delete(`${process.env.REACT_APP_API_PATH}/patients/${id}`)
+    setClients(clients => clients.filter(c => c.id !== id))
   }
 
   React.useEffect(() => {
@@ -65,8 +71,13 @@ export default function Index({ setBreadcrumbs }) {
             </ListItemText>
             <ListItemSecondaryAction>
               <IconButton onClick={() => goToItem(c)}>
-                <AddIcon />
+                <OpenIcon />
               </IconButton>
+
+              <IconButton onClick={() => onRemove(c.id)}>
+                <RemoveIcon />
+              </IconButton>
+
             </ListItemSecondaryAction>
           </ListItem>
           <Divider variant="inset" component="li" />

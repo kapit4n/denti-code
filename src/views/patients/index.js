@@ -8,7 +8,6 @@ import Breadcrumbs from '../../components/breadcrumb'
 
 
 export default function Index() {
-
   const { path } = useRouteMatch()
 
   const [breadcrumbs, setBreadcrumbs] = React.useState([]);
@@ -16,7 +15,6 @@ export default function Index() {
   return (
     <div>
       <Breadcrumbs items={breadcrumbs} />
-
       <Switch>
         <Route exact path={path}>
           <List setBreadcrumbs={setBreadcrumbs} />
