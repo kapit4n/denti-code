@@ -1,10 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 
-import { List, ListItem, ListItemText, ListItemIcon, ListItemSecondaryAction, InconButton, IconButton } from '@mui/material/'
-
-import AddIcon from '@material-ui/icons/ArrowForward'
-
 import DetailComponent from './main'
 
 import { useHistory } from "react-router-dom";
