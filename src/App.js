@@ -17,10 +17,7 @@ import './App.css';
 
 import Nav from './Nav'
 
-export const UserContext = React.createContext(
-  {
-    user: {}, setUser: () => { }
-  });
+export const UserContext = React.createContext({ user: {}, setUser: () => { } });
 
 function App() {
   const [user, setUser] = React.useState({});

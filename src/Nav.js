@@ -51,6 +51,8 @@ export default function Nav() {
           )}
           {matches && (
             <div style={{ display: 'flex' }}>
+              <Link to={`/`}>Dashboard</Link>
+              <div style={{ borderLeft: '2px solid white', height: '1rem', margin: '0 0.5rem' }}></div>
               <Link to={`/patients`}>Patients</Link>
               <div style={{ borderLeft: '2px solid white', height: '1rem', margin: '0 0.5rem' }}></div>
               <Link to={`/doctors`}>Doctors</Link>
