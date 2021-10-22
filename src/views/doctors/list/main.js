@@ -1,31 +1,41 @@
 import React from 'react'
 
-import { List, ListItem, ListItemText, ListItemSecondaryAction, InconButton, IconButton } from '@mui/material/'
+import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Divider } from '@mui/material/'
 
-import AddIcon from '@material-ui/icons/ArrowForward'
+import OpenIcon from '@material-ui/icons/FolderOpen'
+import DeleteIcon from '@material-ui/icons/DeleteForever'
 
-export default function Main({ clients, goToItem }) {
+import './main.css'
+
+export default function Main({ clients, goToItem, onRemove }) {
   return (
     <List>
       {clients && clients.map(c => (
-        <ListItem key={c.id}>
-          <ListItemText>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div>
-                {`Name: ${c.firstName} ${c.lastName}`}
+        <div>
+          <ListItem key={c.id}>
+            <ListItemText>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div>
+                  <h2> {`Name: ${c.firstName} ${c.lastName}`} </h2>
+                  <div>{`Speciality: ${c.speciality}`}</div>
+                  <div>{`CreateAt: ${c.createdAt}`}</div>
+                </div>
               </div>
-              <div style={{ padding: '1rem' }}>
-                <div>{`Speciality: ${c.speciality}`}</div>
-                <div>{`CreateAt: ${c.createdAt}`}</div>
-              </div>
-            </div>
-          </ListItemText>
-          <ListItemSecondaryAction>
-            <IconButton onClick={() => goToItem(c)}>
-              <AddIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>))}
+            </ListItemText>
+            <ListItemSecondaryAction>
+              <IconButton onClick={() => goToItem(c)}>
+                <OpenIcon />
+              </IconButton>
+              
+              <IconButton onClick={() => onRemove(c.id)}>
+                <DeleteIcon />
+              </IconButton>
+
+            </ListItemSecondaryAction>
+          </ListItem>
+          <Divider variant="inset" component="li" style={{ marginLeft: 0 }} />
+        </div>
+      ))}
     </List>
   )
 }

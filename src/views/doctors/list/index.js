@@ -23,7 +23,12 @@ export default function Index() {
     history.push(`/doctors/${item.id}`)
   }
 
+  const onRemove = async (id) => {
+    await axios.delete(`${process.env.REACT_APP_API_PATH}/doctors/${id}`)
+    setClients(list => list.filter(l => l.id !== id))
+  }
+
   return (
-    <DetailComponent clients={clients} goToItem={goToItem} />
+    <DetailComponent clients={clients} goToItem={goToItem} onRemove={onRemove}/>
   )
 }
