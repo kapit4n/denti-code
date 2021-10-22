@@ -23,7 +23,6 @@ function App() {
   const [user, setUser] = React.useState({});
   const value = { user, setUser };
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <div className="App">

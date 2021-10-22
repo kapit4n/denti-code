@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { Switch, useRouteMatch, Route } from 'react-router-dom';
-import List from './list'
+
+import Breadcrumbs from '../../components/breadcrumb'
 import Create from './create'
 import Details from './details';
-import Breadcrumbs from '../../components/breadcrumb'
+import List from './list'
 
 
 export default function Index() {
