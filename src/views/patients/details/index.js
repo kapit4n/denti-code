@@ -11,6 +11,8 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import RemoveIcon from '@material-ui/icons/DeleteOutline'
+import IconButton from '@mui/material/IconButton';
 
 import RecordModal from './record-popup'
 
@@ -63,6 +65,11 @@ export default function Details({ setBreadcrumbs }) {
     setFileInfo(result.data)
   }
 
+  const onRemove = async (id) => {
+    await axios.delete(`${process.env.REACT_APP_API_PATH}/records/${id}`)
+    setFileInfo(s => ({ ...s, Records: [...s.Records.filter(f => f.id !== id)] }))
+  }
+
   return (
     <Card>
       <CardHeader title={`${client.firstName} ${client.lastName} `} />
@@ -78,14 +85,21 @@ export default function Details({ setBreadcrumbs }) {
                   <ListItemText
                     primary={`${r.description}`}
                     secondary={
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        {r.createdAt}
-                      </Typography>
+                      <>
+                        <Typography
+                          sx={{ display: 'inline' }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {r.createdAt}
+
+                        </Typography>
+
+                        <IconButton onClick={() => onRemove(r.id)}>
+                          <RemoveIcon />
+                        </IconButton>
+                      </>
                     }
                   >
                   </ListItemText></ListItem>
