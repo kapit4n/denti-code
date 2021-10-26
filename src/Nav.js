@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function Nav() {
-  const { user, setUser } = React.useContext(UserContext);
+  const { user, handleUserChange } = React.useContext(UserContext);
   const history = useHistory()
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
@@ -62,7 +62,7 @@ export default function Nav() {
             <div style={{ padding: '1.5rem 2rem' }}>
               <span>{user.firstName}</span>
               <Button onClick={() => {
-                setUser({})
+                handleUserChange({})
                 history.push('/')
               }}>Logout</Button>
             </div>

@@ -20,9 +20,20 @@ import Nav from './Nav'
 export const UserContext = React.createContext({ user: {}, setUser: () => { } });
 
 function App() {
-  const [user, setUser] = React.useState({});
-  const value = { user, setUser };
-  const theme = useTheme();
+  const [user, setUser] = React.useState(() => {
+    try {
+      const item = window.localStorage.getItem('user');
+      return item ? JSON.parse(item) : {};
+    } catch(e) {
+      console.log(e)
+      return {}
+    }
+  });
+  const handleUserChange = (val) => {
+    setUser(val)
+    window.localStorage.setItem('user', JSON.stringify(val))
+  }
+  const value = { user, handleUserChange };
 
   return (
     <div className="App">

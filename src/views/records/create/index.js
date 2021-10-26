@@ -16,7 +16,7 @@ const schema = yup.object().shape({
 
 export default function Index({ doctors, fileId, handleCloseDialog }) {
   const history = useHistory()
-  const { user, setUser } = React.useContext(UserContext);
+  const { user, handleUserChange } = React.useContext(UserContext);
 
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(schema),

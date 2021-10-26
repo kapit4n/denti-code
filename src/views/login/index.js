@@ -7,13 +7,13 @@ import { useHistory } from "react-router-dom";
 
 export default function Index() {
 
-  const { user, setUser } = React.useContext(UserContext);
+  const { user, handleUserChange } = React.useContext(UserContext);
   const history = useHistory()
 
   const onSubmit = async () => {
     // const result = await axios.post(`${process.env.REACT_APP_API_PATH}/auth/login`)
     const result = await axios.get(`${process.env.REACT_APP_API_PATH}/doctors/1`)
-    setUser(result.data)
+    handleUserChange(result.data)
     history.push('/')
   }
 
