@@ -5,6 +5,7 @@ import axios from 'axios'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
+import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -72,7 +73,14 @@ export default function Details({ setBreadcrumbs }) {
 
   return (
     <Card>
-      <CardHeader title={`${client.firstName} ${client.lastName} `} />
+      <CardHeader title={`${client.firstName} ${client.lastName} `}>
+      </CardHeader>
+      <CardMedia
+        component="img"
+        height="300"
+        image="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper.png"
+        alt="Paella dish"
+      />
       <CardContent>
         <div>
           <RecordModal handleClose={handleClose} open={open} doctors={doctors} fileId={fileInfo.id}></RecordModal>
