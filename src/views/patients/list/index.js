@@ -45,24 +45,20 @@ export default function Index({ setBreadcrumbs }) {
   }, [])
 
   return (
-    <List className='list'>
+    <List>
       <Button onClick={goToCreate}>New</Button>
       {clients && clients.map(c => (
         <>
           <ListItem alignItems="flex-start">
             <ListItemText
-              primary={`${c.firstName} ${c.lastName}`}
-              secondary={
-                <Typography
-                  sx={{ display: 'inline' }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  {c.profession}
-                </Typography>
-              }
             >
+               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div>
+                  <h2> {`Name: ${c.firstName} ${c.lastName}`} </h2>
+                  <div>{`Profession: ${c.profession}`}</div>
+                  <div>{`CreateAt: ${c.createdAt}`}</div>
+                </div>
+              </div>
             </ListItemText>
             <ListItemSecondaryAction>
               <IconButton onClick={() => goToItem(c)}>
