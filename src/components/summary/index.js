@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-import { List, ListItem, ListItemText } from '@mui/material'
-import Typography from '@mui/material/Typography';
+import { Avatar, List, ListItem, ListItemText } from '@mui/material'
 import Divider from '@mui/material/Divider';
 
 export default function ({ items }) {
@@ -11,19 +10,17 @@ export default function ({ items }) {
       {
         items.map(i => <>
           <ListItem>
-            <ListItemText primary={i.title} secondary={<>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                <div>
+            <ListItemText >
+              <h3>{i.title}</h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>
                   {i.description}
-                </div>
-              </Typography>
+                </span>
+                <Avatar alt={i.ClientFile.Patient?.firstName} src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper.png" />
+              </div>
               <Link to={`/patients/${i.ClientFile?.Patient?.id}`}>{i.ClientFile.Patient?.firstName}</Link>
-            </>} />
+
+            </ListItemText>
           </ListItem>
           <Divider variant="inset" component="li" style={{ marginLeft: 0 }} />
         </>)
