@@ -1,0 +1,39 @@
+form {
+  padding: 2rem;
+}
+
+.login-container {
+  border: 1px solid gray;
+  padding: 2rem 0;
+}
+
+.login-container h1 {
+  margin: 2rem;
+}
+
+.actions {
+  height: 2.5rem;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions > button {
+  margin: 0 0.5rem;
+}
+
+.actions > button:last-child {
+  margin: 0;
+}
+
+.social-icon-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 1rem;
+}

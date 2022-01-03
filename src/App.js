@@ -36,8 +36,7 @@ function App() {
   const value = { user, handleUserChange };
 
   return (
-    <div className="App">
-      <div className="page-container">
+    <div className="App container">
         <Router>
           <UserContext.Provider value={value}>
             <Nav />
@@ -60,7 +59,6 @@ function App() {
             </main>
           </UserContext.Provider>
         </Router>
-      </div>
     </div>
   );
 }

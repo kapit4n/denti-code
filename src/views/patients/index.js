@@ -14,7 +14,7 @@ export default function Index() {
   const [breadcrumbs, setBreadcrumbs] = React.useState([]);
 
   return (
-    <div>
+    <div className="patients-container">
       <Breadcrumbs items={breadcrumbs} />
       <Switch>
         <Route exact path={path}>
