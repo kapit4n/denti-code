@@ -38,10 +38,3 @@ export default function ({ handleClose, open, doctors, fileId }) {
     </Modal>
   )
 }
-
-/*  <Dialog open={open} onClose={handleClose} aria-labelledby="simple-dialog-title">
-   <DialogTitle id="modal">CREATE NEW RECORD</DialogTitle>
-   <DialogContent>
-     <RecordCreate doctors={doctors} fileId={fileId} handleCloseDialog={handleClose} />
-   </DialogContent>
- </Dialog> */

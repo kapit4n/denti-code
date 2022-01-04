@@ -14,6 +14,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import RemoveIcon from '@material-ui/icons/DeleteOutline'
 import IconButton from '@mui/material/IconButton';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 import RecordModal from './record-popup'
 
@@ -24,11 +26,12 @@ export default function Details({ setBreadcrumbs }) {
   const [fileInfo, setFileInfo] = React.useState({})
 
   const [open, setOpen] = React.useState(false);
+  const [openSnack, setOpenSnack] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+  
   const handleClose = async (result) => {
     setOpen(false);
     if (fileInfo.Records) {
@@ -36,6 +39,7 @@ export default function Details({ setBreadcrumbs }) {
     } else {
       setFileInfo(s => ({ ...s, Records: [result.data] }))
     }
+    setOpenSnack(true);
   };
 
   React.useEffect(() => {
@@ -69,6 +73,13 @@ export default function Details({ setBreadcrumbs }) {
   const onRemove = async (id) => {
     await axios.delete(`${process.env.REACT_APP_API_PATH}/records/${id}`)
     setFileInfo(s => ({ ...s, Records: [...s.Records.filter(f => f.id !== id)] }))
+  }
+
+  const handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setOpenSnack(false)
   }
 
   return (
@@ -119,6 +130,11 @@ export default function Details({ setBreadcrumbs }) {
           )}
         </div>
       </CardContent>
+      <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnack}>
+        <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
+            Record created successfully
+        </Alert>
+      </Snackbar>
     </Card>
   )
 }
