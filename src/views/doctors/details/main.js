@@ -5,13 +5,25 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import CardMedia from '@mui/material/CardMedia'
-import axios from 'axios'
+
+import './main.css'
+import { Button } from '@mui/material';
+
+const Actions = () => {
+  return (
+    <div className="doctor-details-actions">
+      <Button className="primary">Edit</Button>
+      <Button>Delete</Button>
+    </div>
+  )
+}
 
 export default function Main({ data }) {
 
   return (
     <Card>
       <CardHeader title={`${data.firstName} ${data.lastName}`} />
+        <Actions />
       <CardMedia
         component="img"
         height="300"
@@ -19,11 +31,11 @@ export default function Main({ data }) {
         alt="Paella dish"
       />
       <CardContent>
-        <div>
-          Speciality: {data.speciality}
+        <div className="info-row">
+          <label>Speciality:</label> {data.speciality}
         </div>
-        <div>
-          CreatedAt: {data.createdAt}
+        <div className="info-row">
+          <label>CreatedAt:</label> {data.createdAt}
         </div>
       </CardContent>
     </Card>

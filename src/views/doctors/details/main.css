@@ -1,0 +1,13 @@
+.doctor-details-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.info-row {
+  color: gray;
+}
+
+.info-row label {
+  font-weight: 700;
+  color: black;
+}
