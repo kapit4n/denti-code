@@ -6,7 +6,7 @@ import * as yup from "yup";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
-import Form from '../form'
+import { CreateForm } from '../form'
 
 const schema = yup.object().shape({
   firstName: yup.string().required(),
@@ -27,6 +27,6 @@ export default function Index() {
   }
 
   return (
-   <Form handleSubmit={handleSubmit(d => submitIt(d))} register={register} />
+    <CreateForm handleSubmit={handleSubmit(d => submitIt(d))} register={register} />
   );
 };

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -9,21 +9,25 @@ import CardMedia from '@mui/material/CardMedia'
 import './main.css'
 import { Button } from '@mui/material';
 
-const Actions = () => {
+const Actions = ({ onDelete, id }) => {
   return (
     <div className="doctor-details-actions">
-      <Button className="primary">Edit</Button>
-      <Button>Delete</Button>
+      <Button className="primary"> <Link to={`/doctors/edit/${id}`}>Edit</Link> </Button>
+      <Button onClick={onDelete}>Delete</Button>
     </div>
   )
 }
 
 export default function Main({ data }) {
 
+  const onDelete = useCallback((id) => {
+    console.log("Delete it: " + id)
+  })
+
   return (
     <Card>
       <CardHeader title={`${data.firstName} ${data.lastName}`} />
-        <Actions />
+      <Actions onDelete={onDelete} id={data.id} />
       <CardMedia
         component="img"
         height="300"

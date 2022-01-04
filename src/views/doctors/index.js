@@ -5,6 +5,7 @@ import { Link, Switch, useRouteMatch, Route } from 'react-router-dom';
 import List from './list'
 import Create from './create'
 import Details from './details';
+import Edit from './edit';
 
 export default function Index() {
 
@@ -31,6 +32,9 @@ export default function Index() {
         </Route>
         <Route path={`${path}/list`}>
           <List />
+        </Route>
+        <Route path={`${path}/edit/:id`}>
+          <Edit />
         </Route>
         <Route path={`${path}/:id`}>
           <Details />
