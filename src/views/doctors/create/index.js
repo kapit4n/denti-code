@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import TextField from '@mui/material/TextField'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+
+import Form from '../form'
 
 const schema = yup.object().shape({
   firstName: yup.string().required(),
@@ -26,19 +27,6 @@ export default function Index() {
   }
 
   return (
-    <form onSubmit={handleSubmit(d => submitIt(d))} style={{ display: 'block' }}>
-      <div>
-        <TextField {...register("firstName")} placeholder="First Name" fullWidth />
-      </div>
-      <div>
-        <TextField {...register("lastName")} placeholder="Last Name" fullWidth />
-      </div>
-      <div>
-        <TextField {...register("speciality")} placeholder="Speciality" fullWidth />
-      </div>
-      <div>
-        <input type="submit" />
-      </div>
-    </form>
+   <Form handleSubmit={handleSubmit(d => submitIt(d))} register={register} />
   );
 };
