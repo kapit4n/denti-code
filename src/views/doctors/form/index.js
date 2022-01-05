@@ -20,7 +20,7 @@ export function CreateForm({ register, handleSubmit }) {
         <TextField {...register("speciality")} placeholder="Speciality" label="Speciality" fullWidth variant="standard" InputLabelProps={{ shrink: true }}/>
       </div>
       <div>
-        <Button type="submit">Create</Button>
+        <Button type="submit" variant="contained" color="primary">Create</Button>
       </div>
     </form>
   )
@@ -57,7 +57,7 @@ export function EditForm({ handleSubmit, control, cancel = () => { } }) {
         />
       </div>
       <div>
-        <Button type="submit">Save</Button>
+        <Button type="submit" variant="contained" color="primary">Save</Button>
         <Button type="reset" onClick={cancel}>Cancel</Button>
       </div>
     </form>

@@ -17,7 +17,7 @@ export default function Main({ clients, goToItem, onRemove }) {
     <>
       <div className="list-header">
         <div className="list-header-actions">
-          <Button><Link to="/doctors/create">Create</Link></Button>
+          <Button variant="contained" color="primary"><Link to="/doctors/create">CREATE</Link></Button>
         </div>
         <div className="list-header-filters">
           <Button >Filters</Button>
