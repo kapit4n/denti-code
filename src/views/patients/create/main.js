@@ -7,24 +7,12 @@ import * as yup from "yup";
 import { Button } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import styles from './styles'
 
 const theme = createTheme();
 
 
-const useStyles = makeStyles(() => ({
-  field: {
-    width: '100%'
-  },
-  fieldContainer: {
-    width: '100%',
-    margin: '0.5rem 0'
-  },
-  form: {
-    maxWidth: '40rem',
-    width: '100%',
-    padding: '0 1rem'
-  }
-}));
+const useStyles = makeStyles(styles);
 
 const schema = yup.object().shape({
   firstName: yup.string().required(),
@@ -46,38 +34,38 @@ export default function Main({ onSubmit }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div className={classes.formContainer}>
         <form onSubmit={handleSubmit(d => onSubmit(d))} className={classes.form}>
           <div className={classes.fieldContainer}>
-            <TextField className={classes.field} {...register("firstName")} placeholder="First Name" variant="outlined" label="First Name" />
+            <TextField className={classes.field} {...register("firstName")} fullWidth variant="standard" InputLabelProps={{ shrink: true }} label="First Name" />
             {errors.firstName && <p className="firstName_error">First Name is required</p>}
           </div>
           <div className={classes.fieldContainer}>
-            <TextField className={classes.field}  {...register("lastName")} placeholder="Last Name" variant="outlined" label="Last Name" />
+            <TextField className={classes.field}  {...register("lastName")} fullWidth variant="standard" InputLabelProps={{ shrink: true }} label="Last Name" />
             {errors.lastName && <p className="firstName_error">Last Name is required</p>}
           </div>
           <div className={classes.fieldContainer}>
-            <TextField type="date" className={classes.field}  {...register("birthDate")} placeholder="Birth Date" variant="outlined" label="Birth Date" />
+            <TextField type="date" className={classes.field}  {...register("birthDate")} fullWidth variant="standard" InputLabelProps={{ shrink: true }} label="Birth Date" />
             {errors.birthDate && <p className="firstName_error">Birth Date is required</p>}
           </div>
           <div className={classes.fieldContainer}>
-            <TextField className={classes.field}  {...register("profession")} placeholder="Profession" variant="outlined" label="Profession" />
+            <TextField className={classes.field}  {...register("profession")} fullWidth variant="standard" InputLabelProps={{ shrink: true }} label="Profession" />
             {errors.profession && <p className="firstName_error">Profession is required</p>}
           </div>
           <div className={classes.fieldContainer}>
-            <TextField className={classes.field}  {...register("address")} placeholder="Address" variant="outlined" label="Address" />
+            <TextField className={classes.field}  {...register("address")} fullWidth variant="standard" InputLabelProps={{ shrink: true }} label="Address" />
             {errors.address && <p className="firstName_error">Address is required</p>}
           </div>
           <div className={classes.fieldContainer}>
-            <TextField className={classes.field}  {...register("diseases")} placeholder="Diseases" variant="outlined" label="Diseases" />
+            <TextField className={classes.field}  {...register("diseases")} fullWidth variant="standard" InputLabelProps={{ shrink: true }} label="Diseases" />
             {errors.diseases && <p className="firstName_error">Diseases is required</p>}
           </div>
           <div className={classes.fieldContainer}>
-            <TextField className={classes.field}  {...register("allergies")} placeholder="Allergies" variant="outlined" label="Allergies" />
+            <TextField className={classes.field}  {...register("allergies")} fullWidth variant="standard" InputLabelProps={{ shrink: true }} label="Allergies" />
             {errors.allergies && <p className="firstName_error">Allergies is required</p>}
           </div>
           <div>
-            <Button type="submit" variant="contained" color="primary">Submit</Button>
+            <Button type="submit" variant="contained" color="primary">CREATE</Button>
           </div>
         </form>
       </div>
