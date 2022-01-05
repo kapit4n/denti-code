@@ -46,7 +46,7 @@ export default function Index({ setBreadcrumbs }) {
 
   return (
     <List>
-      <Button onClick={goToCreate}>New</Button>
+      <Button onClick={goToCreate} variant="contained" color="primary">CREATE</Button>
       {clients && clients.map(c => (
         <>
           <ListItem alignItems="flex-start">

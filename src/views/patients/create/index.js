@@ -11,13 +11,20 @@ const schema = yup.object().shape({
   lastName: yup.string().required(),
 })
 
-export default function Index() {
+export default function Index({ setBreadcrumbs }) {
   const history = useHistory()
 
   const submitIt = async (data) => {
     await axios.post(`${process.env.REACT_APP_API_PATH}/patients`, data)
     history.push(`/patients`)
   }
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST', route: "/patients" },
+      { label: 'CREATE' }
+    ])
+  }, [])
 
   return (
     <Main onSubmit={submitIt} />
