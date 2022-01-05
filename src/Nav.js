@@ -12,19 +12,25 @@ import { useHistory } from "react-router-dom";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { makeStyles } from '@mui/styles';
+import styles from './styles'
 
-const useStyles = makeStyles((theme) => ({
-  drawer: {
-    width: 100,
-    flexShrint: 0,
-  }
-}))
+import { makeStyles } from '@mui/styles';
+import { useLocation } from 'react-router-dom';
+
+import {
+  useRouteMatch,
+} from "react-router-dom";
+
+const useStyles = makeStyles(styles)
 
 export default function Nav() {
   const { user, handleUserChange } = React.useContext(UserContext);
   const history = useHistory()
   const theme = useTheme();
+  let match = useRouteMatch();
+
+  let location = useLocation();
+
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   const classes = useStyles();
@@ -40,6 +46,9 @@ export default function Nav() {
     setOpen(false);
   }
 
+  const includesPatients = location.pathname.includes('patients')
+  const includesDoctors = location.pathname.includes('doctors')
+
   return (
     <>
       <AppBar>
@@ -50,12 +59,10 @@ export default function Nav() {
             </IconButton>
           )}
           {matches && (
-            <div style={{ display: 'flex' }}>
-              <Link to={`/`}>Dashboard</Link>
-              <div style={{ borderLeft: '2px solid white', height: '1rem', margin: '0 0.5rem' }}></div>
-              <Link to={`/patients`}>Patients</Link>
-              <div style={{ borderLeft: '2px solid white', height: '1rem', margin: '0 0.5rem' }}></div>
-              <Link to={`/doctors`}>Doctors</Link>
+            <div className={classes.linksContainer}>
+              <Link to={`/`} className={!includesPatients && !includesDoctors ? classes.currentLink: classes.activeLink}>Dashboard X</Link>
+              <Link to={`/patients`} className={includesPatients ? classes.currentLink: classes.activeLink}>Patients</Link>
+              <Link to={`/doctors`} className={includesDoctors ? classes.currentLink: classes.activeLink}>Doctors</Link>
             </div>
           )}
           {user && user.firstName ? (
