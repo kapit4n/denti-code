@@ -29,7 +29,11 @@ export default function ({ data, id }) {
     history.push(`/doctors/list`)
   }
 
+  const onCancel = () => {
+    history.push(`/doctors`)
+  }
+
   return (
-    <EditForm handleSubmit={handleSubmit(d => submitIt(d))} register={register} control={control} />
+    <EditForm handleSubmit={handleSubmit(d => submitIt(d))} register={register} control={control} cancel={onCancel} />
   )
 }
