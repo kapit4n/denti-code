@@ -1,0 +1,18 @@
+.breadcrumb-container {
+  padding: 1rem 0.5rem;
+}
+
+.breadcrumb-container .MuiBreadcrumbs-li {
+  background-color:  #e6e6ff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 20px 20px 0;
+}
+.breadcrumb-container .MuiBreadcrumbs-li a {
+  text-decoration: none;
+}
+
+.breadcrumb-container .MuiBreadcrumbs-li:last-child {
+  background-color:  #8080ff;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  border-radius: 0 10px 10px 0;
+}

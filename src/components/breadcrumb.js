@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import MLink from '@mui/material/Link';
+
+import './breadcrumb.css'
 
 export default function Index({ items }) {
   return (
-    <Breadcrumbs aria-label="breadcrumb">
+    <Breadcrumbs aria-label="breadcrumb" className="breadcrumb-container">
       {items.map(i => (
         <>
           {i.route ? (
