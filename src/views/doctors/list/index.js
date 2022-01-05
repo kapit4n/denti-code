@@ -5,7 +5,7 @@ import DetailComponent from './main'
 
 import { useHistory } from "react-router-dom";
 
-export default function Index() {
+export default function Index({ setBreadcrumbs }) {
 
   const [clients, setClients] = React.useState([]);
   const history = useHistory()
@@ -13,6 +13,13 @@ export default function Index() {
   React.useEffect(async () => {
     const list = await axios.get(`${process.env.REACT_APP_API_PATH}/doctors/`)
     setClients(list.data)
+  }, [])
+
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST' }
+    ])
   }, [])
 
   const goToItem = (item) => {

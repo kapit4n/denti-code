@@ -1,4 +1,10 @@
-.list {
+.doctor-list {
   width: 100%;
   max-width: 40rem;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0.5rem;
 }

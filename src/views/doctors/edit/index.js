@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import Main from './main'
 
-export default function Edit() {
+export default function Edit({ setBreadcrumbs }) {
 
   const { id } = useParams();
   const [data, setData] = React.useState({})
@@ -16,6 +16,13 @@ export default function Edit() {
 
     setData(result.data)
   }, [id])
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST', route: "/doctors" },
+      { label: 'EDIT' }
+    ])
+  }, [])
 
   return (
     <Main data={data} id={id} />

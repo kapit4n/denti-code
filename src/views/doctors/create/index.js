@@ -14,7 +14,7 @@ const schema = yup.object().shape({
   speciality: yup.string().required(),
 })
 
-export default function Index() {
+export default function Index({ setBreadcrumbs }) {
   const history = useHistory()
 
   const { register, handleSubmit } = useForm({
@@ -25,6 +25,13 @@ export default function Index() {
     await axios.post(`${process.env.REACT_APP_API_PATH}/doctors`, data)
     history.push(`/doctors/list`)
   }
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST', route: "/doctors" },
+      { label: 'CREATE' }
+    ])
+  }, [])
 
   return (
     <CreateForm handleSubmit={handleSubmit(d => submitIt(d))} register={register} />

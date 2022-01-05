@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import Main from './main'
 
-export default function Details() {
+export default function Details({ setBreadcrumbs }) {
 
   const { id } = useParams();
   const [data, setData] = React.useState({})
@@ -13,6 +13,13 @@ export default function Details() {
     const result = await axios.get(`${process.env.REACT_APP_API_PATH}/doctors/${id}`)
     setData(result.data)
   }, [id])
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST', route: "/doctors" },
+      { label: 'DETAILS' }
+    ])
+  }, [])
 
   return (
     <Main data={data} />
