@@ -6,24 +6,34 @@ import {
   IconButton, Divider, Button
 } from '@mui/material/'
 
+import { makeStyles } from '@mui/styles'
+
 import OpenIcon from '@material-ui/icons/FolderOpen'
 import DeleteIcon from '@material-ui/icons/DeleteForever'
-
-import './main.css'
 import { Link } from 'react-router-dom'
 
+import styles from './styles'
+
+const useStyles = makeStyles(styles);
+
+
+
 export default function Main({ clients, goToItem, onRemove }) {
+  
+  const classes = useStyles()
+  
   return (
     <>
-      <div className="list-header">
-        <div className="list-header-actions">
+      <div className={classes.listHeader}>
+        <div className={classes.listHeaderActions}>
           <Button variant="contained" color="primary"><Link to="/doctors/create">CREATE</Link></Button>
         </div>
         <div className="list-header-filters">
           <Button >Filters</Button>
         </div>
       </div>
-      <List>
+      
+      <List className={classes.list}>
         {clients && clients.map(c => (
           <div>
             <ListItem key={c.id}>
