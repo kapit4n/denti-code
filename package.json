@@ -8,7 +8,7 @@
     "@hookform/resolvers": "^2.8.10",
     "@material-ui/icons": "^4.11.2",
     "@mui/icons-material": "^5.8.2",
-    "@mui/material": "^5.2.7",
+    "@mui/material": "^5.8.2",
     "@mui/styles": "^5.8.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.2.7",
