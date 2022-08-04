@@ -10,8 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import ListItemSecondaryAction, { getListItemSecondaryActionClassesUtilityClass } from '@mui/material/ListItemSecondaryAction';
 
 import OpenIcon from '@material-ui/icons/FolderOpen'
-import { makeStyles } from '@material-ui/styles'
 import RemoveIcon from '@material-ui/icons/DeleteForever'
+import { makeStyles } from '@material-ui/styles'
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom'
 
@@ -50,6 +50,22 @@ export default function Index({ setBreadcrumbs }) {
     ])
   }, [])
 
+  const renderPrimary = (c) => {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div>
+          <h2> {`Name: ${c.firstName} ${c.lastName}`} </h2>
+        </div>
+      </div>
+    )
+  }
+
+  const renderSecondary = c => (
+    <> <div>{`Profession: ${c.profession}`}</div>
+      <div>{`CreateAt: ${c.createdAt}`}</div>
+    </>
+  )
+
   return (
     <>
       <div className={classes.listHeader}>
@@ -66,25 +82,17 @@ export default function Index({ setBreadcrumbs }) {
         {clients && clients.map(c => (
           <>
             <ListItem alignItems="flex-start">
-              <ListItemText
+              <ListItemText primary={renderPrimary(c)}
+                secondary={renderSecondary(c)}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <div>
-                    <h2> {`Name: ${c.firstName} ${c.lastName}`} </h2>
-                    <div>{`Profession: ${c.profession}`}</div>
-                    <div>{`CreateAt: ${c.createdAt}`}</div>
-                  </div>
-                </div>
               </ListItemText>
               <ListItemSecondaryAction>
                 <IconButton onClick={() => goToItem(c)}>
                   <OpenIcon />
                 </IconButton>
-
                 <IconButton onClick={() => onRemove(c.id)}>
                   <RemoveIcon />
                 </IconButton>
-
               </ListItemSecondaryAction>
             </ListItem>
             <Divider variant="inset" component="li" style={{ marginLeft: 0 }} />
@@ -92,6 +100,5 @@ export default function Index({ setBreadcrumbs }) {
         ))}
       </List>
     </>
-
   )
 }
