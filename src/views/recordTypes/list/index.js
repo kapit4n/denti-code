@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material/'
 
 import AddIcon from '@material-ui/icons/ArrowForward'
+import OpenIcon from '@material-ui/icons/FolderOpen'
+import RemoveIcon from '@material-ui/icons/DeleteForever'
 
 import { useHistory } from "react-router-dom";
 
@@ -26,6 +28,10 @@ export default function Index({ setBreadcrumbs }) {
     history.push(`/recordTypes/create`)
   }
 
+  const onRemove = () => {
+
+  }
+
 
   React.useEffect(() => {
     setBreadcrumbs([
@@ -39,12 +45,13 @@ export default function Index({ setBreadcrumbs }) {
       <List>
         {clients && clients.map(c => (
           <ListItem key={c.id}>
-            <ListItemText>
-              {c.description} - {c.price}
-            </ListItemText>
+            <ListItemText primary={`Name: ${c.description}`} secondary={`price: $${c.price}`} />
             <ListItemSecondaryAction>
               <IconButton onClick={() => goToItem(c)}>
-                <AddIcon />
+                <OpenIcon />
+              </IconButton>
+              <IconButton onClick={() => onRemove(c.id)}>
+                <RemoveIcon />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>))}
