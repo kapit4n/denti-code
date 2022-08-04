@@ -48,6 +48,8 @@ export default function Nav() {
 
   const includesPatients = location.pathname.includes('patients')
   const includesDoctors = location.pathname.includes('doctors')
+  const includesRecordTypes = location.pathname.includes('recordTypes')
+  const includesAppointments = location.pathname.includes('appointments')
 
   return (
     <>
@@ -60,9 +62,11 @@ export default function Nav() {
           )}
           {matches && (
             <div className={classes.linksContainer}>
-              <Link to={`/`} className={!includesPatients && !includesDoctors ? classes.currentLink: classes.activeLink}>Dashboard X</Link>
-              <Link to={`/patients`} className={includesPatients ? classes.currentLink: classes.activeLink}>Patients</Link>
-              <Link to={`/doctors`} className={includesDoctors ? classes.currentLink: classes.activeLink}>Doctors</Link>
+              <Link to={`/`} className={!includesPatients && !includesDoctors  && !includesRecordTypes  && !includesAppointments ? classes.currentLink : classes.activeLink}>Dashboard X</Link>
+              <Link to={`/patients`} className={includesPatients ? classes.currentLink : classes.activeLink}>Patients</Link>
+              <Link to={`/doctors`} className={includesDoctors ? classes.currentLink : classes.activeLink}>Doctors</Link>
+              <Link to={`/recordTypes`} className={includesRecordTypes ? classes.currentLink : classes.activeLink}>Record Types</Link>
+              <Link to={`/appointments`} className={includesAppointments ? classes.currentLink : classes.activeLink}>Appointments</Link>
             </div>
           )}
           {user && user.firstName ? (

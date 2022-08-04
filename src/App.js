@@ -2,6 +2,7 @@ import React from 'react'
 import Patients from './views/patients'
 import Doctors from './views/doctors'
 import Records from './views/records'
+import RecordTypes from './views/recordTypes'
 import Login from './views/login'
 import Dashboard from './views/dashboard'
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -51,6 +52,9 @@ function App() {
                 </Route>
                 <Route path="/records">
                   <Records />
+                </Route>
+                <Route path="/recordTypes">
+                  <RecordTypes />
                 </Route>
                 <Route path="/login">
                   <Login />
