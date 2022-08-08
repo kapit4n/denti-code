@@ -11,6 +11,10 @@ export default function Details() {
   const { id } = useParams();
   const { data, isLoading } = useFetchDetails({ entity: RECORD_TYPES_ENTITY_NAME, id })
 
+  if (isLoading)  {
+    return "Loading"
+  }
+
   return (
     <Card>
       <CardHeader title={data.description} />
