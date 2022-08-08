@@ -2,10 +2,6 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 
 export default function ({ entity }) {
-  console.log(entity)
-  console.log(entity)
-  console.log(entity)
-  console.log(entity)
   const [data, setData] = useState([])
 
   useEffect(async () => {

@@ -5,10 +5,11 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import useFetchDetails from '../../../hooks/useFetchDetails'
+import { RECORD_ENTITY_NAME } from '../constants'
 
 export default function Details() {
   const { id } = useParams();
-  const { isLoading, data } = useFetchDetails({ id, entity: 'records' })
+  const { isLoading, data } = useFetchDetails({ id, entity: RECORD_ENTITY_NAME })
 
   if (isLoading) {
     return "Loading"

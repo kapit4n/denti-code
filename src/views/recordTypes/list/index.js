@@ -6,7 +6,7 @@ import Actions from '../../../components/actions'
 import { List, ListItem, ListItemText } from '@mui/material/'
 import { useHistory } from "react-router-dom";
 import useFetch from '../../../hooks/useFetch';
-import { RECORD_TYPES_ENTITY_NAME} from '../constans'
+import { RECORD_TYPES_ENTITY_NAME} from '../constants'
 
 const LIST_BC_LABEL = 'TYPES LIST'
 
