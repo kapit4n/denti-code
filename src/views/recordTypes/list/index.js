@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import Button from '@mui/material/Button';
 
 import Actions from '../../../components/actions'
@@ -7,24 +6,24 @@ import Actions from '../../../components/actions'
 import { List, ListItem, ListItemText } from '@mui/material/'
 import { useHistory } from "react-router-dom";
 import useFetch from '../../../hooks/useFetch';
+import { RECORD_TYPES_ENTITY_NAME} from '../constans'
 
-const ENTITY = 'recordTypes'
+const LIST_BC_LABEL = 'TYPES LIST'
 
 export default function Index({ setBreadcrumbs }) {
-
+  const { data } = useFetch({ entity: RECORD_TYPES_ENTITY_NAME })
   const history = useHistory()
-  const { data } = useFetch({entity: ENTITY})
 
   const onRemove = () => {
   }
 
   const goToCreate = () => {
-    history.push(`/${ENTITY}/create`)
+    history.push(`/${RECORD_TYPES_ENTITY_NAME}/create`)
   }
 
   React.useEffect(() => {
     setBreadcrumbs([
-      { label: 'TYPES LIST' }
+      { label: LIST_BC_LABEL }
     ])
   }, [])
 
@@ -35,7 +34,7 @@ export default function Index({ setBreadcrumbs }) {
         {data && data.map(c => (
           <ListItem key={c.id}>
             <ListItemText primary={`Name: ${c.description}`} secondary={`price: $${c.price}`} />
-            <Actions item={c} entity={ENTITY} onRemove={onRemove} />
+            <Actions item={c} entity={RECORD_TYPES_ENTITY_NAME} onRemove={onRemove} />
           </ListItem>))}
       </List>
     </>

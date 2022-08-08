@@ -1,39 +1,44 @@
 import React from 'react'
 import axios from 'axios'
 
-import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material/'
+import { List, ListItem, ListItemText, Button } from '@mui/material/'
 
-import AddIcon from '@material-ui/icons/ArrowForward'
+import Actions from '../../../components/actions'
 
 import { useHistory } from "react-router-dom";
+import { RECORD_ENTITY_NAME } from '../constants'
+import useFetch from '../../../hooks/useFetch'
+const LIST_BC_LABEL= 'Records List'
 
-export default function Index() {
+export default function Index({ setBreadcrumbs }) {
 
-  const [clients, setClients] = React.useState([]);
+  const { data } = useFetch({ entity: RECORD_ENTITY_NAME })
   const history = useHistory()
 
-  React.useEffect(async () => {
-    const list = await axios.get(`${process.env.REACT_APP_API_PATH}/records/`)
-    setClients(list.data)
-  }, [])
+  const onRemove = () => { }
 
-  const goToItem = (item) => {
-    history.push(`/records/${item.id}`)
+  const goToCreate = () => {
+    history.push(`/${RECORD_ENTITY_NAME}/create`)
   }
 
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: LIST_BC_LABEL }
+    ])
+  }, [])
+
   return (
-    <List>
-      {clients && clients.map(c => (
-        <ListItem key={c.id}>
-          <ListItemText>
-            {c.Doctor ? `${c.Doctor.firstName} ${c.Doctor.lastName}` : ''}
-          </ListItemText>
-          <ListItemSecondaryAction>
-            <IconButton onClick={() => goToItem(c)}>
-              <AddIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>))}
-    </List>
+    <>
+      <Button onClick={goToCreate} variant="contained" color="primary">CREATE</Button>
+      <List>
+        {data && data.map(c => (
+          <ListItem key={c.id}>
+            <ListItemText>
+              {c.Doctor ? `${c.Doctor.firstName} ${c.Doctor.lastName}` : ''}
+            </ListItemText>
+            <Actions item={c} entity={RECORD_ENTITY_NAME} onRemove={onRemove} />
+          </ListItem>))}
+      </List>
+    </>
   )
 }
