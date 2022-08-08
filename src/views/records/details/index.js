@@ -1,26 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
-import axios from 'axios'
+import useFetchDetails from '../../../hooks/useFetchDetails'
 
 export default function Details() {
   const { id } = useParams();
-  const [data, setData] = React.useState({})
+  const { isLoading, data } = useFetchDetails({ id, entity: 'records' })
 
-  useEffect(async () => {
-    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/records/${id}`)
-    setData(result.data)
-  }, [id])
+  if (isLoading) {
+    return "Loading"
+  }
 
   return (
     <Card>
-      <CardHeader title={data.ClientFile ? `${data.ClientFile.id}`: ''} />
+      <CardHeader title={data.ClientFile && data.ClientFile.Patient ? `${data.ClientFile.Patient.firstName} ${data.ClientFile.Patient.lastName}` : ''} />
       <CardContent>
         <div>
-          Doctor: {data.Doctor ? `${data.Doctor.firstName} ${data.Doctor.lastName}`: ''}
+          Doctor: {data.Doctor ? `${data.Doctor.firstName} ${data.Doctor.lastName}` : ''}
         </div>
         <div>
           CreatedAt: {data.createdAt}

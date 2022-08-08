@@ -8,7 +8,6 @@ import Create from './create'
 import Details from './details';
 
 export default function Index() {
-
   const { url, path, isExact } = useRouteMatch()
   const [breadcrumbs, setBreadcrumbs] = React.useState([])
 
