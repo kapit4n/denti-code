@@ -2,36 +2,25 @@ import React from 'react'
 import axios from 'axios'
 import Button from '@mui/material/Button';
 
-import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material/'
+import Actions from '../../../components/actions'
 
-import AddIcon from '@material-ui/icons/ArrowForward'
-import OpenIcon from '@material-ui/icons/FolderOpen'
-import RemoveIcon from '@material-ui/icons/DeleteForever'
-
+import { List, ListItem, ListItemText } from '@mui/material/'
 import { useHistory } from "react-router-dom";
+import useFetch from '../../../hooks/useFetch';
+
+const ENTITY = 'recordTypes'
 
 export default function Index({ setBreadcrumbs }) {
 
-  const [clients, setClients] = React.useState([]);
   const history = useHistory()
+  const { data } = useFetch({entity: ENTITY})
 
-  React.useEffect(async () => {
-    const list = await axios.get(`${process.env.REACT_APP_API_PATH}/recordTypes/`)
-    setClients(list.data)
-  }, [])
-
-  const goToItem = (item) => {
-    history.push(`/recordTypes/${item.id}`)
+  const onRemove = () => {
   }
 
   const goToCreate = () => {
-    history.push(`/recordTypes/create`)
+    history.push(`/${ENTITY}/create`)
   }
-
-  const onRemove = () => {
-
-  }
-
 
   React.useEffect(() => {
     setBreadcrumbs([
@@ -43,17 +32,10 @@ export default function Index({ setBreadcrumbs }) {
     <>
       <Button onClick={goToCreate} variant="contained" color="primary">CREATE</Button>
       <List>
-        {clients && clients.map(c => (
+        {data && data.map(c => (
           <ListItem key={c.id}>
             <ListItemText primary={`Name: ${c.description}`} secondary={`price: $${c.price}`} />
-            <ListItemSecondaryAction>
-              <IconButton onClick={() => goToItem(c)}>
-                <OpenIcon />
-              </IconButton>
-              <IconButton onClick={() => onRemove(c.id)}>
-                <RemoveIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
+            <Actions item={c} entity={ENTITY} onRemove={onRemove} />
           </ListItem>))}
       </List>
     </>
