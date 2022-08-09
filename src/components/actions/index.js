@@ -1,7 +1,6 @@
 import React from 'react'
-import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material/'
+import { ListItemSecondaryAction, IconButton } from '@mui/material/'
 
-import AddIcon from '@material-ui/icons/ArrowForward'
 import OpenIcon from '@material-ui/icons/FolderOpen'
 import RemoveIcon from '@material-ui/icons/DeleteForever'
 import { useHistory } from "react-router-dom";

@@ -6,9 +6,12 @@ export default function ({ entity, id }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(async () => {
-    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/${entity}/${id}`)
+    if (id) {
+      const result = await axios.get(`${process.env.REACT_APP_API_PATH}/${entity}/${id}`)
+      setData(result.data)
+    }
+  
     setIsLoading(false)
-    setData(result.data)
   }, [id])
 
   return { data, isLoading }
