@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import { RECORD_ENTITY_NAME } from '../constants'
 import useFetch from '../../../hooks/useFetch'
 import Loading from '../../../components/loading';
-const LIST_BC_LABEL= 'Records List'
+const LIST_BC_LABEL = 'Records List'
 
 export default function Index({ setBreadcrumbs }) {
 
@@ -39,7 +39,9 @@ export default function Index({ setBreadcrumbs }) {
         {data && data.map(c => (
           <ListItem key={c.id}>
             <ListItemText>
-              {c.Doctor ? `${c.Doctor.firstName} ${c.Doctor.lastName}` : ''}
+              {c.Doctor ? `${c.Doctor.firstName} ${c.Doctor.lastName}` : 'No doctor'},
+              {c.ClientFile && c.ClientFile.Patient ? `${c.ClientFile.Patient.firstName} ${c.ClientFile.Patient.lastName}` : 'No Patient'},
+              {c.RecordType ? `${c.RecordType.description} ` : 'No Type'}
             </ListItemText>
             <Actions item={c} entity={RECORD_ENTITY_NAME} onRemove={onRemove} />
           </ListItem>))}

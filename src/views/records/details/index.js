@@ -21,7 +21,10 @@ export default function Details() {
       <CardHeader title={data.ClientFile && data.ClientFile.Patient ? `${data.ClientFile.Patient.firstName} ${data.ClientFile.Patient.lastName}` : ''} />
       <CardContent>
         <div>
-          Doctor: {data.Doctor ? `${data.Doctor.firstName} ${data.Doctor.lastName}` : ''}
+          Doctor: {data.Doctor ? `${data.Doctor.firstName} ${data.Doctor.lastName}` : 'No doctor'}
+        </div>
+        <div>
+          Record Type: {data.RecordType ? `${data.RecordType.description}` : 'No record type'}
         </div>
         <div>
           CreatedAt: {data.createdAt}
