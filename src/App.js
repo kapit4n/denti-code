@@ -3,10 +3,9 @@ import Patients from './views/patients'
 import Doctors from './views/doctors'
 import Records from './views/records'
 import RecordTypes from './views/recordTypes'
+import Appointments from './views/appointments'
 import Login from './views/login'
 import Dashboard from './views/dashboard'
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 
 import {
   BrowserRouter as Router,
@@ -52,6 +51,9 @@ function App() {
                 </Route>
                 <Route path="/records">
                   <Records />
+                </Route>
+                <Route path="/appointments">
+                  <Appointments />
                 </Route>
                 <Route path="/recordTypes">
                   <RecordTypes />

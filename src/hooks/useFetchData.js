@@ -1,16 +1,14 @@
-import { useState, useEffect } from "react";
 import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 export default function ({ entity }) {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(async () => {
-    (async function () {
-        const list = await axios.get(`${process.env.REACT_APP_API_PATH}/${entity}/`)
-        setData(list.data)
-        setIsLoading(false)
-      })();
+    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/${entity}`)
+    setIsLoading(false)
+    setData(result.data)
   }, [entity])
 
   return { data, isLoading }

@@ -8,11 +8,12 @@ import Actions from '../../../components/actions'
 import { useHistory } from "react-router-dom";
 import { RECORD_ENTITY_NAME } from '../constants'
 import useFetch from '../../../hooks/useFetch'
+import Loading from '../../../components/loading';
 const LIST_BC_LABEL= 'Records List'
 
 export default function Index({ setBreadcrumbs }) {
 
-  const { data } = useFetch({ entity: RECORD_ENTITY_NAME })
+  const { data, isLoading } = useFetch({ entity: RECORD_ENTITY_NAME })
   const history = useHistory()
 
   const onRemove = () => { }
@@ -26,6 +27,10 @@ export default function Index({ setBreadcrumbs }) {
       { label: LIST_BC_LABEL }
     ])
   }, [])
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <>
