@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
@@ -15,15 +17,22 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
+import styles from './styles'
+
+import { makeStyles } from '@mui/styles';
+
 const schema = yup.object().shape({
   description: yup.string().required(),
 })
+
+const useStyles = makeStyles(styles)
 
 export default function Index({ fileId, handleCloseDialog }) {
   const history = useHistory()
   const { user } = React.useContext(UserContext);
   const { data: records, isLoading: isLoadingRecords } = useFetchData({ entity: 'records' })
   const [value, setValue] = useState(new Date())
+  const classes = useStyles();
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -47,28 +56,28 @@ export default function Index({ fileId, handleCloseDialog }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(submitIt)} style={{ display: 'block' }}>
+    <form onSubmit={handleSubmit(submitIt)} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {user && (
-        <div>
-          <Select {...register("recordId")} placeholder="Doctor" >
-            {records.map(d => <MenuItem value={d.id} key={d.id}>{d.description}</MenuItem>)}
+        <FormControl>
+          <InputLabel id="recordId">Record</InputLabel>
+          <Select {...register("recordId")} placeholder="Record" label="XXXXXX">
+            {records.map(d => <MenuItem value={d.id} id="recordId" key={d.id}>{d.description}</MenuItem>)}
           </Select>
-        </div>
+        </FormControl>
       )}
-      <div>
+      <FormControl>
         <TextField {...register("description")} placeholder="Description" fullWidth multiline
           rows={4} />
-      </div>
+      </FormControl>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <div>
+        <FormControl>
           <DateTimePicker
             label="DateTime picker"
             value={value}
             onChange={handleChange}
             renderInput={(params) => <TextField {...register("date")} {...params} />}
           />
-
-        </div>
+        </FormControl>
       </LocalizationProvider>
       <div style={{ padding: '1rem' }}>
         <Button>Cancel</Button>
