@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField'
+import FormControl from '@mui/material/FormControl'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
@@ -38,27 +39,25 @@ export default function Index({ doctors, fileId, handleCloseDialog }) {
 
   return (
     <form onSubmit={handleSubmit(submitIt)} className={classes.form}>
-      <div className={classes.fieldContainer}>
+      <FormControl>
         <TextField
           {...register("description")}
           fullWidth
-          variant="standard"
-          InputLabelProps={{ shrink: true }}
+          variant="outlined"
           label="Description"
         />
-      </div>
-      <div className={classes.fieldContainer}>
+      </FormControl>
+      <FormControl>
         <TextField
           {...register("price")}
           fullWidth
-          variant="standard"
-          InputLabelProps={{ shrink: true }}
+          variant="outlined"
           label="Price" />
-      </div>
-      <div style={{ padding: '1rem' }}>
+      </FormControl>
+      <FormControl>
+        <Button type="submit" color="primary" variant="contained">Save</Button>
         <Button>Cancel</Button>
-        <Button type="submit" color="primary">Save</Button>
-      </div>
+      </FormControl>
     </form>
   );
 };

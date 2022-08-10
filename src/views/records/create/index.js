@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
@@ -11,12 +13,19 @@ import { MenuItem, Button } from '@mui/material/';
 import { UserContext } from '../../../App'
 import useFetchData from '../../../hooks/useFetchData';
 import Loading from '../../../components/loading';
+import { makeStyles } from '@mui/styles';
+import styles from './styles'
 
 const schema = yup.object().shape({
   description: yup.string().required(),
 })
 
+const useStyles = makeStyles(styles);
+
 export default function Index({ fileId, handleCloseDialog }) {
+
+  const classes = useStyles();
+
   const history = useHistory()
   const { user } = React.useContext(UserContext);
   const { data: doctors, isLoading: isLoadingDoctors } = useFetchData({ entity: 'doctors' })
@@ -43,45 +52,48 @@ export default function Index({ fileId, handleCloseDialog }) {
     }
   }
 
-  if (isLoadingDoctors) {
+  if (isLoadingDoctors || isLoadingPatients || isLoadingRecordTypes) {
     return <Loading />
   }
 
   return (
-    <form onSubmit={handleSubmit(submitIt)} style={{ display: 'block' }}>
+    <form onSubmit={handleSubmit(submitIt)} className={classes.form}>
       {user /* && user.isAdmin */ && (
-        <div>
-          <Select {...register("doctorId")} placeholder="Doctor" >
+        <FormControl>
+          <InputLabel id="doctorId">Doctor</InputLabel>
+          <Select {...register("doctorId")} placeholder="Doctor" labelId="doctorId" label="Doctor">
             {doctors.map(d => <MenuItem value={d.id} key={d.id}>{d.firstName}</MenuItem>)}
           </Select>
-        </div>
+        </FormControl>
       )}
 
       {user /* && user.isAdmin */ && (
-        <div>
-          <Select {...register("fileId")} placeholder="Patient" >
+        <FormControl>
+          <InputLabel id="fileId">Patient</InputLabel>
+          <Select {...register("fileId")} label="Patient">
             {patients.map(d => <MenuItem value={d.ClientFile && d.ClientFile.id} key={d.id}>{d.firstName}</MenuItem>)}
           </Select>
-        </div>
+        </FormControl>
       )}
 
       {user /* && user.isAdmin */ && (
-        <div>
-          <Select {...register("recordTypeId")} placeholder="Record Type" >
+        <FormControl>
+          <InputLabel id="recordTypeId">Record Type</InputLabel>
+          <Select {...register("recordTypeId")} label="Record Type" >
             {recordTypes.map(d => <MenuItem value={d.id} key={d.id}>{d.description}</MenuItem>)}
           </Select>
-        </div>
+        </FormControl>
       )}
 
-      <div>
-        <TextField {...register("description")} placeholder="Description" fullWidth multiline
+      <FormControl>
+        <TextField {...register("description")} label="Description" multiline
           rows={4} />
-      </div>
-  
-      <div style={{ padding: '1rem' }}>
+      </FormControl>
+
+      <FormControl>
+        <Button type="submit" color="primary" variant="contained">Save</Button>
         <Button>Cancel</Button>
-        <Button type="submit" color="primary">Save</Button>
-      </div>
+      </FormControl>
     </form>
   );
 };

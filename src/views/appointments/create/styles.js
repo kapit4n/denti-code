@@ -1,7 +1,7 @@
-const styles = () => (
-  {
-    dateContainer: {
-      marginTop: '1rem'
+export default function () {
+  return {
+    form: {
+      display: 'flex', flexDirection: 'column', gap: '1rem'
     }
   }
-)
+}

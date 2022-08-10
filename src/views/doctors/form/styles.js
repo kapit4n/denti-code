@@ -1,9 +1,7 @@
-const myStyles = () => {
+export default function() {
   return {
     form: {
       display: 'flex', flexDirection: 'column', gap: '1rem'
-    },
+    }
   }
 }
-
-export default myStyles;

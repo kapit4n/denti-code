@@ -56,17 +56,17 @@ export default function Index({ fileId, handleCloseDialog }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(submitIt)} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <form onSubmit={handleSubmit(submitIt)} className={classes.form}>
       {user && (
         <FormControl>
           <InputLabel id="recordId">Record</InputLabel>
-          <Select {...register("recordId")} placeholder="Record" label="XXXXXX">
+          <Select {...register("recordId")} label="Record">
             {records.map(d => <MenuItem value={d.id} id="recordId" key={d.id}>{d.description}</MenuItem>)}
           </Select>
         </FormControl>
       )}
       <FormControl>
-        <TextField {...register("description")} placeholder="Description" fullWidth multiline
+        <TextField {...register("description")} label="Description" multiline
           rows={4} />
       </FormControl>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -79,10 +79,10 @@ export default function Index({ fileId, handleCloseDialog }) {
           />
         </FormControl>
       </LocalizationProvider>
-      <div style={{ padding: '1rem' }}>
+      <FormControl>
+        <Button type="submit" color="primary" variant="contained">Save</Button>
         <Button>Cancel</Button>
-        <Button type="submit" color="primary">Save</Button>
-      </div>
+      </FormControl>
     </form>
   );
 };
