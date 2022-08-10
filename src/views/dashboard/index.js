@@ -1,36 +1,28 @@
-import axios from 'axios'
 import React from 'react'
 
 import Summary from '../../components/summary'
+import { ENTITY_NAME as RECORD_ENTITY_NAME } from '../records/constants'
+import { ENTITY_NAME as RECORDTYPE_ENTITY_NAME } from '../recordTypes/constants'
+import { ENTITY_NAME as APPOINTMENTS_ENTITY_NAME } from '../appointments/constants'
+import useFetchForDashboard from '../../hooks/useFetchForDashboard'
+import Loading from '../../components/loading'
 
 const RECORD_ITEM = 'Record'
 
 export default function Index() {
 
-  const [summaryData, setSummaryData] = React.useState([])
+  const { data, isLoading } = useFetchForDashboard({ entityName: RECORD_ENTITY_NAME })
 
-  React.useEffect(async () => {
-    const records = await axios.get(`${process.env.REACT_APP_API_PATH}/records`)
-    setSummaryData(
-      records.data.map(
-        r => (
-          {
-            ...r,
-            title: r.description,
-            description: r.createdAt,
-            type: RECORD_ITEM,
-            links: [{
-              path: '/patients',
-              value: r.ClientFile?.Patient?.id,
-              label: r.ClientFile.Patient?.firstName
-            }]
-          }
-        )
-      )
-    )
-  }, [])
+  if (isLoading) {
+    return <Loading />
+  }
+
+  console.log(data)
+  console.log(data)
+  console.log(data)
+  console.log(data)
 
   return (
-    <Summary items={summaryData} />
+    <Summary items={data} />
   )
 }

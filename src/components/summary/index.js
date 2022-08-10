@@ -7,6 +7,9 @@ import Divider from '@mui/material/Divider';
 import './summary.css'
 
 export default function ({ items }) {
+
+  console.log(items)
+
   return (
     <List>
       {
@@ -18,9 +21,9 @@ export default function ({ items }) {
                 <span>
                   {i.description}
                 </span>
-                <Avatar alt={i.ClientFile.Patient?.firstName} src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper.png" />
+                <Avatar alt={i.ClientFile && i.ClientFile.Patient?.firstName} src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper.png" />
               </div>
-              {i.links.map(l => (
+              {i.links && i.links.map(l => (
                 <Link to={`${l.path}/${l.value}`}>{l.label}</Link>
               ))}
 

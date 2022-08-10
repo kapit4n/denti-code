@@ -31,7 +31,7 @@ export default function Details({ setBreadcrumbs }) {
   const handleClickOpen = () => {
     setOpen(true);
   };
-  
+
   const handleClose = async (result) => {
     setOpen(false);
     if (fileInfo.Records) {
@@ -132,7 +132,7 @@ export default function Details({ setBreadcrumbs }) {
       </CardContent>
       <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnack}>
         <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
-            Record created successfully
+          Record created successfully
         </Alert>
       </Snackbar>
     </Card>

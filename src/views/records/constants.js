@@ -1,1 +1,1 @@
-export const RECORD_ENTITY_NAME = 'records';
+export const ENTITY_NAME = 'records';

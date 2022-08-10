@@ -18,7 +18,7 @@ const useStyles = makeStyles(styles);
 
 
 
-export default function Main({ clients, goToItem, onRemove }) {
+export default function Main({ doctors, goToItem, onRemove }) {
   
   const classes = useStyles()
   
@@ -33,8 +33,8 @@ export default function Main({ clients, goToItem, onRemove }) {
         </div>
       </div>
       
-      <List className={classes.list}>
-        {clients && clients.map(c => (
+      <List>
+        {doctors && doctors.map(c => (
           <div>
             <ListItem key={c.id}>
               <ListItemText>

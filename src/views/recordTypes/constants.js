@@ -1,2 +1,2 @@
-export const RECORD_TYPES_ENTITY_NAME = 'recordTypes'
+export const ENTITY_NAME = 'recordTypes'
 

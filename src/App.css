@@ -35,7 +35,7 @@
 }
 
 main {
-  min-width: 40rem;
+  width: 50rem;
 }
 
 @media only screen and (min-width: 1000px) {

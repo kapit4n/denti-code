@@ -14,34 +14,26 @@ import RemoveIcon from '@material-ui/icons/DeleteForever'
 import { makeStyles } from '@material-ui/styles'
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom'
+import useFetch from '../../../hooks/useFetch';
 
-import './list.css';
 import styles from './styles'
-
+import { ENTITY_NAME} from '../constants'
 
 const useStyles = makeStyles(styles)
 
 export default function Index({ setBreadcrumbs }) {
-  const [clients, setClients] = React.useState([]);
+  const { data } = useFetch({ entity: ENTITY_NAME })
+
   const history = useHistory()
   const classes = useStyles()
-
-  React.useEffect(async () => {
-    const list = await axios.get(`${process.env.REACT_APP_API_PATH}/patients/`)
-    setClients(list.data)
-  }, [])
 
   const goToItem = (item) => {
     history.push(`/patients/${item.id}`)
   }
 
-  const goToCreate = () => {
-    history.push(`/patients/create`)
-  }
-
   const onRemove = async (id) => {
     await axios.delete(`${process.env.REACT_APP_API_PATH}/patients/${id}`)
-    setClients(clients => clients.filter(c => c.id !== id))
+    // setClients(clients => clients.filter(c => c.id !== id))
   }
 
   React.useEffect(() => {
@@ -78,8 +70,8 @@ export default function Index({ setBreadcrumbs }) {
         </div>
       </div>
 
-      <List className={classes.list}>
-        {clients && clients.map(c => (
+      <List>
+        {data && data.map(c => (
           <>
             <ListItem alignItems="flex-start">
               <ListItemText primary={renderPrimary(c)}

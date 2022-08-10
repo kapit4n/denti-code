@@ -6,20 +6,20 @@ import { List, ListItem, ListItemText, Button } from '@mui/material/'
 import Actions from '../../../components/actions'
 
 import { useHistory } from "react-router-dom";
-import { RECORD_ENTITY_NAME } from '../constants'
+import { ENTITY_NAME } from '../constants'
 import useFetch from '../../../hooks/useFetch'
 import Loading from '../../../components/loading';
 const LIST_BC_LABEL = 'Records List'
 
 export default function Index({ setBreadcrumbs }) {
 
-  const { data, isLoading } = useFetch({ entity: RECORD_ENTITY_NAME })
+  const { data, isLoading } = useFetch({ entity: ENTITY_NAME })
   const history = useHistory()
 
   const onRemove = () => { }
 
   const goToCreate = () => {
-    history.push(`/${RECORD_ENTITY_NAME}/create`)
+    history.push(`/${ENTITY_NAME}/create`)
   }
 
   React.useEffect(() => {
@@ -43,7 +43,7 @@ export default function Index({ setBreadcrumbs }) {
               {c.ClientFile && c.ClientFile.Patient ? `${c.ClientFile.Patient.firstName} ${c.ClientFile.Patient.lastName}` : 'No Patient'},
               {c.RecordType ? `${c.RecordType.description} ` : 'No Type'}
             </ListItemText>
-            <Actions item={c} entity={RECORD_ENTITY_NAME} onRemove={onRemove} />
+            <Actions item={c} entity={ENTITY_NAME} onRemove={onRemove} />
           </ListItem>))}
       </List>
     </>
