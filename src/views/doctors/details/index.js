@@ -1,18 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import axios from 'axios'
 import Main from './main'
+import { ENTITY_NAME } from '../constants'
+import useFetchDetails from '../../../hooks/useFetchDetails'
+import Loading from '../../../components/loading';
 
 export default function Details({ setBreadcrumbs }) {
 
   const { id } = useParams();
-  const [data, setData] = React.useState({})
-
-  useEffect(async () => {
-    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/doctors/${id}`)
-    setData(result.data)
-  }, [id])
+  const {data: doctor, isLoading} = useFetchDetails({ id, entity: ENTITY_NAME })
 
   React.useEffect(() => {
     setBreadcrumbs([
@@ -21,7 +18,11 @@ export default function Details({ setBreadcrumbs }) {
     ])
   }, [])
 
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
-    <Main data={data} />
+    <Main data={doctor} />
   )
 }

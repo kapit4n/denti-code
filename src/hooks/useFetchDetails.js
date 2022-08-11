@@ -14,5 +14,5 @@ export default function ({ entity, id }) {
     setIsLoading(false)
   }, [id])
 
-  return { data, isLoading }
+  return { data, isLoading, setData }
 }

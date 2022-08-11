@@ -18,13 +18,18 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 import RecordModal from './record-popup'
+import useFetchDetails from '../../../hooks/useFetchDetails'
+import { ENTITY_NAME } from '../constants'
+import { ENTITY_NAME as DOCTOR_ENTITY_NAME } from '../../doctors/constants'
+import { FILES_ENTITY_NAME } from '../constants'
+import Loading from '../../../components/loading';
 
 export default function Details({ setBreadcrumbs }) {
   const { id } = useParams();
-  const [client, setClient] = React.useState({})
-  const [doctors, setDoctors] = React.useState([])
-  const [fileInfo, setFileInfo] = React.useState({})
-
+  const {data: client, isLoading} = useFetchDetails({ id, entity: ENTITY_NAME })
+  const {data: doctors, isLoading: doctorsLoading} = useFetchDetails({ id, entity: DOCTOR_ENTITY_NAME })
+  const {data: fileInfo, isLoading: filesLoading, setData: setFileInfo} = useFetchDetails({ id, entity: FILES_ENTITY_NAME })
+  
   const [open, setOpen] = React.useState(false);
   const [openSnack, setOpenSnack] = React.useState(false);
 
@@ -49,21 +54,6 @@ export default function Details({ setBreadcrumbs }) {
     ])
   }, [])
 
-
-  useEffect(async () => {
-    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/doctors`)
-    setDoctors(result.data)
-  }, [])
-
-  useEffect(async () => {
-    const result = await axios.get(`${process.env.REACT_APP_API_PATH}/patients/${id}`)
-    setClient(result.data)
-    const fileResult = await axios.get(`${process.env.REACT_APP_API_PATH}/files/${id}`)
-    if (fileResult.data) {
-      setFileInfo(fileResult.data)
-    }
-  }, [id])
-
   const createFile = async () => {
     const result = await axios.post(`${process.env.REACT_APP_API_PATH}/files`, { patientId: client.id })
     console.log(result)
@@ -80,6 +70,10 @@ export default function Details({ setBreadcrumbs }) {
       return
     }
     setOpenSnack(false)
+  }
+
+  if (isLoading || doctorsLoading || filesLoading) {
+    return <Loading />
   }
 
   return (
