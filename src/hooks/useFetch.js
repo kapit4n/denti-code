@@ -13,5 +13,5 @@ export default function ({ entity }) {
       })();
   }, [entity])
 
-  return { data, isLoading }
+  return { data, isLoading, setData }
 }
