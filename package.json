@@ -15,7 +15,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.27.2",
-    "date-fns": "^2.29.2",
+    "date-fns": "^2.29.3",
     "dotenv": "^10.0.0",
     "expect": "^26.6.2",
     "react": "^17.0.1",
