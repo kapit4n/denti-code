@@ -29,6 +29,9 @@ export default function Details() {
         <div>
           CreatedAt: {data.createdAt}
         </div>
+        <div>
+          Description: {data.description}
+        </div>
       </CardContent>
     </Card>
   )

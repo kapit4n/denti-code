@@ -9,6 +9,10 @@ export default function ({ entity }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    refetch()
+  }, [entity, cookies])
+
+  const refetch = async () => {
     let token = ""
     if (cookies) {
       token = cookies["token"]
@@ -18,7 +22,7 @@ export default function ({ entity }) {
       setData(list.data)
       setIsLoading(false)
     })();
-  }, [entity, cookies])
+  }
 
-  return { data, isLoading, setData }
+  return { data, isLoading, setData, refetch }
 }

@@ -9,14 +9,18 @@ import { useHistory } from "react-router-dom";
 import { ENTITY_NAME } from '../constants'
 import useFetch from '../../../hooks/useFetch'
 import Loading from '../../../components/loading';
+import { deleteAction } from '../../../services/crud'
 const LIST_BC_LABEL = 'Records List'
 
 export default function Index({ setBreadcrumbs }) {
 
-  const { data, isLoading } = useFetch({ entity: ENTITY_NAME })
+  const { data, isLoading, refetch } = useFetch({ entity: ENTITY_NAME })
   const history = useHistory()
 
-  const onRemove = () => { }
+  const onRemove = async (id) => {
+    await deleteAction({entity: ENTITY_NAME, id})
+    refetch()
+  }
 
   const goToCreate = () => {
     history.push(`/${ENTITY_NAME}/create`)

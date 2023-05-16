@@ -1,0 +1,7 @@
+.actions-container {
+  color: green;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
