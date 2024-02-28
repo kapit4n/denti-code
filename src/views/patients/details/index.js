@@ -88,8 +88,8 @@ export default function Details({ setBreadcrumbs }) {
       />
       <CardContent>
         <div>
-          <RecordModal handleClose={handleClose} open={open} doctors={doctors} fileId={fileInfo.id}></RecordModal>
-          {fileInfo.id ? (<div>
+          <RecordModal handleClose={handleClose} open={open} doctors={doctors} fileId={fileInfo?.id}></RecordModal>
+          {fileInfo?.id ? (<div>
             File Number: {fileInfo.id}
             <List>
               <li><Button onClick={handleClickOpen}>Add</Button></li>
