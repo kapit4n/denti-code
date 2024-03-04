@@ -63,7 +63,7 @@ export default function Nav() {
           )}
           {matches && (
             <div className={classes.linksContainer}>
-              <Link to={`/`} className={!includesPatients && !includesDoctors  && !includesRecordTypes  && !includesRecords  && !includesAppointments ? classes.currentLink : classes.activeLink}>Dashboard X</Link>
+              <Link to={`/`} className={!includesPatients && !includesDoctors && !includesRecordTypes && !includesRecords && !includesAppointments ? classes.currentLink : classes.activeLink}>Dashboard X</Link>
               <Link to={`/patients`} className={includesPatients ? classes.currentLink : classes.activeLink}>Patients</Link>
               <Link to={`/doctors`} className={includesDoctors ? classes.currentLink : classes.activeLink}>Doctors</Link>
               <Link to={`/recordTypes`} className={includesRecordTypes ? classes.currentLink : classes.activeLink}>Record Types</Link>
@@ -71,13 +71,14 @@ export default function Nav() {
               <Link to={`/appointments`} className={includesAppointments ? classes.currentLink : classes.activeLink}>Appointments</Link>
             </div>
           )}
+
           {user && user.firstName ? (
             <div style={{ padding: '1.5rem 2rem' }}>
               <span>{user.firstName}</span>
-              <Button onClick={() => {
+              <Button style={{ color: 'white' }} variant="outlined" onClick={() => {
                 handleUserChange({})
                 history.push('/')
-              }}>Logout</Button>
+              }}>Sign Out</Button>
             </div>
           ) : (
             <div style={{ padding: '1.5rem 2rem' }}>
