@@ -3,9 +3,11 @@ import axios from 'axios'
 
 export default function ({ entityName }) {
   const [data, setData] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
 
 
   React.useEffect(async () => {
+    
     const records = await axios.get(`${process.env.REACT_APP_API_PATH}/${entityName}`)
     setData(
       records.data.map(
@@ -24,7 +26,8 @@ export default function ({ entityName }) {
         )
       )
     )
+    setIsLoading(false)
   }, [entityName])
 
-  return { data }
+  return { data, isLoading }
 }

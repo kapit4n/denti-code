@@ -17,11 +17,6 @@ export default function Index() {
     return <Loading />
   }
 
-  console.log(data)
-  console.log(data)
-  console.log(data)
-  console.log(data)
-
   return (
     <Summary items={data} />
   )
