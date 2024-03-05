@@ -8,6 +8,7 @@ export default function ({ entity, id }) {
   useEffect(async () => {
     if (id) {
       const result = await axios.get(`${process.env.REACT_APP_API_PATH}/${entity}/${id}`)
+      await setTimeout(() => {}, 2000)
       setData(result.data)
     }
   

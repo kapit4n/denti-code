@@ -1,34 +1,48 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
-import { ENTITY_NAME } from '../constants'
+import CardActions from '@mui/material/CardActions'
+import { Button } from '@mui/material';
+import { makeStyles } from '@mui/styles'
+
 import useFetchDetails from '../../../hooks/useFetchDetails'
 import Loading from '../../../components/loading';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom'
+import { ENTITY_NAME } from '../constants'
+import styles from './styles'
+
+const useStyles = makeStyles(styles);
 
 export default function Details() {
+  const classes = useStyles()
+
   const { id } = useParams();
   const { data, isLoading } = useFetchDetails({ entity: ENTITY_NAME, id })
 
-  if (isLoading)  {
+  if (isLoading) {
     return <Loading />
   }
 
   return (
     <Card>
+      <CardActions>
+        <Button variant="contained" color="primary" className={classes.actionButton}>
+          <Link to="/recordTypes/edit">EDIT</Link>
+        </Button>
+        <Button variant="contained" color="error" className={classes.actionButton}>
+          <Link to="/recordTypes">Remove</Link>
+        </Button>
+      </CardActions>
       <CardHeader title={data.description} />
       <CardContent>
-        <Button variant="contained" color="primary">
-        <Link to="/recordTypes/edit">EDIT</Link></Button>
-        <div>
-          Price: {data.price}
-        </div>
-        <div>
-          CreatedAt: {data.createdAt}
+        <div className={classes.content}>
+          <strong>Price:</strong> <span>{data.price}</span>
+          <strong>Estimated Time:</strong> <span>1 hour</span>
+          <strong>CreatedAt:</strong> <span>{data.createdAt}</span>
+          <strong>Description:</strong> <span>{data.description.repeat(50)}</span>
         </div>
       </CardContent>
     </Card>
