@@ -36,17 +36,6 @@ export default function Details({setBreadcrumbs}) {
 
   return (
     <Card>
-      <CardActions>
-        <Button variant="contained" color="primary" className={classes.actionButton}>
-          <Link to={`/recordTypes`}>LIST</Link>
-        </Button>
-        <Button variant="contained" color="primary" className={classes.actionButton}>
-          <Link to={`/recordTypes/${id}/edit`}>EDIT</Link>
-        </Button>
-        <Button variant="contained" color="error" className={classes.actionButton}>
-          <Link to="/recordTypes">REMOVE</Link>
-        </Button>
-      </CardActions>
       <CardHeader title={data.description} />
       <CardContent>
         <div className={classes.content}>
@@ -56,6 +45,14 @@ export default function Details({setBreadcrumbs}) {
           <strong>Description:</strong> <span>{data.description.repeat(50)}</span>
         </div>
       </CardContent>
+      <CardActions>
+        <Button variant="contained" color="primary" className={classes.actionButton}>
+          <Link to={`/recordTypes/${id}/edit`}>EDIT</Link>
+        </Button>
+        <Button variant="contained" color="error" className={classes.actionButton}>
+          <Link to="/recordTypes">REMOVE</Link>
+        </Button>
+      </CardActions>
     </Card>
   )
 }
