@@ -6,6 +6,7 @@ import Breadcrumbs from '../../components/breadcrumb'
 import List from './list'
 import Create from './create'
 import Details from './details';
+import Edit from './edit';
 
 export default function Index() {
   const { url, path, isExact } = useRouteMatch()
@@ -20,6 +21,9 @@ export default function Index() {
         </Route>
         <Route path={`${path}/create`}>
           <Create  setBreadcrumbs={setBreadcrumbs}/>
+        </Route>
+        <Route path={`${path}/:id/edit`}>
+          <Edit  setBreadcrumbs={setBreadcrumbs}/>
         </Route>
         <Route path={`${path}/:id`}>
           <Details  setBreadcrumbs={setBreadcrumbs}/>
