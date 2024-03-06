@@ -30,10 +30,13 @@ export default function Details() {
     <Card>
       <CardActions>
         <Button variant="contained" color="primary" className={classes.actionButton}>
-          <Link to="/recordTypes/edit">EDIT</Link>
+          <Link to={`/recordTypes`}>LIST</Link>
+        </Button>
+        <Button variant="contained" color="primary" className={classes.actionButton}>
+          <Link to={`/recordTypes/${id}/edit`}>EDIT</Link>
         </Button>
         <Button variant="contained" color="error" className={classes.actionButton}>
-          <Link to="/recordTypes">Remove</Link>
+          <Link to="/recordTypes">REMOVE</Link>
         </Button>
       </CardActions>
       <CardHeader title={data.description} />
