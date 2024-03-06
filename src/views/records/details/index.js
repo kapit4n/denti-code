@@ -8,9 +8,17 @@ import useFetchDetails from '../../../hooks/useFetchDetails'
 import { ENTITY_NAME } from '../constants'
 import Loading from '../../../components/loading';
 
-export default function Details() {
+export default function Details({setBreadcrumbs}) {
   const { id } = useParams();
   const { isLoading, data } = useFetchDetails({ id, entity: ENTITY_NAME })
+
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST RECORDS', route: "/records" },
+      { label: 'DETAILS' }
+    ])
+  }, [])
 
   if (isLoading) {
     return <Loading />

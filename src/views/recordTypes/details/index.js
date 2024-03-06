@@ -16,11 +16,19 @@ import styles from './styles'
 
 const useStyles = makeStyles(styles);
 
-export default function Details() {
+export default function Details({setBreadcrumbs}) {
   const classes = useStyles()
 
   const { id } = useParams();
   const { data, isLoading } = useFetchDetails({ entity: ENTITY_NAME, id })
+
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST RECORD TYPES', route: "/recordTypes" },
+      { label: 'DETAILS' }
+    ])
+  }, [])
 
   if (isLoading) {
     return <Loading />

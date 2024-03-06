@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Card from '@mui/material/Card'
@@ -8,10 +8,17 @@ import useFetchDetails from '../../../hooks/useFetchDetails'
 import { ENTITY_NAME } from '../constants'
 import Loading from '../../../components/loading';
 
-export default function Details() {
+export default function Details({setBreadcrumbs}) {
   const { id } = useParams();
   const { isLoading, data } = useFetchDetails({ id, entity: ENTITY_NAME })
   const { isLoading: isLoadingRecord, data: recordInfo } = useFetchDetails({ id: data.Record? data.Record.id: 0, entity: 'records' })
+  
+  useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST APPOINTMENTS', route: "/appointments" },
+      { label: 'DETAILS' }
+    ])
+  }, [])
 
   if (isLoading || isLoadingRecord) {
     return <Loading />

@@ -34,11 +34,12 @@ export default function Index({ setBreadcrumbs }) {
   const onRemove = async (id) => {
     await axios.delete(`${process.env.REACT_APP_API_PATH}/patients/${id}`)
     // setClients(clients => clients.filter(c => c.id !== id))
+    // TODO: Set display tip
   }
 
   React.useEffect(() => {
     setBreadcrumbs([
-      { label: 'LIST' }
+      { label: 'LIST PATIENTS' }
     ])
   }, [])
 

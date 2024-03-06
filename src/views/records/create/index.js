@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField'
@@ -22,7 +22,7 @@ const schema = yup.object().shape({
 
 const useStyles = makeStyles(styles);
 
-export default function Index({ fileId, handleCloseDialog }) {
+export default function Index({ fileId, handleCloseDialog, setBreadcrumbs }) {
 
   const classes = useStyles();
 
@@ -51,6 +51,14 @@ export default function Index({ fileId, handleCloseDialog }) {
       history.push(`/records`)
     }
   }
+
+  useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST RECORDS', route: "/records" },
+      { label: 'CREATE' }
+    ])
+  }, [])
+
 
   if (isLoadingDoctors || isLoadingPatients || isLoadingRecordTypes) {
     return <Loading />
@@ -90,10 +98,10 @@ export default function Index({ fileId, handleCloseDialog }) {
           rows={4} />
       </FormControl>
 
-      <FormControl>
+      <div className={classes.actionButtons}>
         <Button type="submit" color="primary" variant="contained">Save</Button>
-        <Button>Cancel</Button>
-      </FormControl>
+        <Button color='secondary' variant='contained'>Cancel</Button>
+      </div>
     </form>
   );
 };

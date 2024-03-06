@@ -9,7 +9,7 @@ import { ENTITY_NAME } from '../constants'
 import useFetch from '../../../hooks/useFetch'
 import Loading from '../../../components/loading';
 import { deleteAction } from '../../../services/crud'
-const LIST_BC_LABEL = 'Appoitments List'
+const LIST_BC_LABEL = 'LIST APPOINTMENTS'
 
 
 export default function Index({ setBreadcrumbs }) {
