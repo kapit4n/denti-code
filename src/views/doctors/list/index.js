@@ -14,7 +14,7 @@ export default function Index({ setBreadcrumbs }) {
 
   React.useEffect(() => {
     setBreadcrumbs([
-      { label: 'LIST' }
+      { label: 'LIST DOCTORS' }
     ])
   }, [])
 

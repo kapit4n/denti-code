@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField'
@@ -27,7 +27,7 @@ const schema = yup.object().shape({
 
 const useStyles = makeStyles(styles)
 
-export default function Index({ fileId, handleCloseDialog }) {
+export default function Index({ fileId, handleCloseDialog, setBreadcrumbs }) {
   const history = useHistory()
   const { user } = React.useContext(UserContext);
   const { data: records, isLoading: isLoadingRecords } = useFetchData({ entity: 'records' })
@@ -50,6 +50,13 @@ export default function Index({ fileId, handleCloseDialog }) {
       history.push(`/appointments`)
     }
   }
+
+  useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST APPOINTMENTS', route: "/appointments" },
+      { label: 'CREATE' }
+    ])
+  }, [])
 
   if (isLoadingRecords) {
     return <Loading />
@@ -79,10 +86,10 @@ export default function Index({ fileId, handleCloseDialog }) {
           />
         </FormControl>
       </LocalizationProvider>
-      <FormControl>
+      <div className={classes.actionButtons}>
         <Button type="submit" color="primary" variant="contained">Save</Button>
         <Button>Cancel</Button>
-      </FormControl>
+      </div>
     </form>
   );
 };

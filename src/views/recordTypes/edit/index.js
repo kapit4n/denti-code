@@ -18,21 +18,28 @@ import styles from './styles'
 const useStyles = makeStyles(styles);
 const TIP_TIMEOUT = 2000;
 
-export default function Edit() {
+export default function Edit({ setBreadcrumbs }) {
   const [displayError, setDisplayError] = useState(false);
-  
+
   const [displaySuccess, setDisplaySuccess] = useState(false);
 
   const classes = useStyles()
 
   const { id } = useParams();
-  const { data, isLoading } = useFetchDetails({ entity: ENTITY_NAME, id })
+  const { data, isLoading, setData } = useFetchDetails({ entity: ENTITY_NAME, id })
   const [dataToEdit, setDataToEdit] = useState({});
-  
+
   useEffect(() => {
     setDataToEdit(data)
-    console.log("set data to edit")
   }, [data])
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST RECORD TYPES', route: "/recordTypes" },
+      { label: `${data?.description?.toUpperCase()} DETAILS`, route: `/recordTypes/${id}` },
+      { label: 'EDIT' }
+    ])
+  }, [data, id])
 
   if (isLoading) {
     return <Loading />
@@ -55,6 +62,7 @@ export default function Edit() {
   const saveData = async () => {
     try {
       await axios.put(`${process.env.REACT_APP_API_PATH}/recordTypes/${id}`, { ...dataToEdit })
+      setData(dataToEdit)
       displaySuccessHandler()
     } catch (error) {
       console.log(error)
@@ -63,23 +71,11 @@ export default function Edit() {
   }
 
   const onChangeData = (e, field) => {
-    setDataToEdit({...dataToEdit, [field]: e.target.value})
+    setDataToEdit({ ...dataToEdit, [field]: e.target.value })
   }
 
   return (
     <Card>
-      <CardActions>
-        <Button variant="contained" color="primary" className={classes.actionButton}>
-          <Link to={`/recordTypes/${id}`}>VIEW</Link>
-        </Button>
-        <Button variant="contained" color="primary" onClick={saveData} className={classes.actionButton}>
-          SAVE
-        </Button>
-        <Button variant="contained" color="secondary" className={classes.actionButton}>
-          <Link to={`/recordTypes/${id}`}>Cancel</Link>
-        </Button>
-      </CardActions>
-      
       <CardContent>
         {displaySuccess && <span className={classes.successMessage}>Data saved successfully</span>}
         {displayError && <span className={classes.errorMessage}>Error to save data</span>}
@@ -91,6 +87,14 @@ export default function Edit() {
           <strong>Description:</strong> <TextField id="outlined-basic" label="" multiline rows={4} value={dataToEdit.description.repeat(50)} variant="outlined" />
         </div>
       </CardContent>
+      <CardActions>
+        <Button variant="contained" color="primary" onClick={saveData} className={classes.actionButton}>
+          SAVE
+        </Button>
+        <Button variant="contained" color="secondary" className={classes.actionButton}>
+          <Link to={`/recordTypes/${id}`}>Cancel</Link>
+        </Button>
+      </CardActions>
     </Card>
   )
 }

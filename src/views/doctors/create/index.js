@@ -28,7 +28,7 @@ export default function Index({ setBreadcrumbs }) {
 
   React.useEffect(() => {
     setBreadcrumbs([
-      { label: 'LIST', route: "/doctors" },
+      { label: 'LIST DOCTORS', route: "/doctors" },
       { label: 'CREATE' }
     ])
   }, [])

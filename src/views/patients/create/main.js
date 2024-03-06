@@ -63,9 +63,10 @@ export default function Main({ onSubmit }) {
           <TextField  {...register("allergies")} variant="outlined" label="Allergies" />
           {errors.allergies && <p className="firstName_error">Allergies is required</p>}
         </FormControl>
-        <FormControl>
+        <div className={classes.actionButtons}>
           <Button type="submit" variant="contained" color="primary">CREATE</Button>
-        </FormControl>
+          <Button variant="contained" color="secondary">CANCEL</Button>
+        </div>
       </form>
     </ThemeProvider>
   );

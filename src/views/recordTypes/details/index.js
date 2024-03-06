@@ -16,11 +16,19 @@ import styles from './styles'
 
 const useStyles = makeStyles(styles);
 
-export default function Details() {
+export default function Details({setBreadcrumbs}) {
   const classes = useStyles()
 
   const { id } = useParams();
   const { data, isLoading } = useFetchDetails({ entity: ENTITY_NAME, id })
+
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'LIST RECORD TYPES', route: "/recordTypes" },
+      { label: 'DETAILS' }
+    ])
+  }, [])
 
   if (isLoading) {
     return <Loading />
@@ -28,17 +36,6 @@ export default function Details() {
 
   return (
     <Card>
-      <CardActions>
-        <Button variant="contained" color="primary" className={classes.actionButton}>
-          <Link to={`/recordTypes`}>LIST</Link>
-        </Button>
-        <Button variant="contained" color="primary" className={classes.actionButton}>
-          <Link to={`/recordTypes/${id}/edit`}>EDIT</Link>
-        </Button>
-        <Button variant="contained" color="error" className={classes.actionButton}>
-          <Link to="/recordTypes">REMOVE</Link>
-        </Button>
-      </CardActions>
       <CardHeader title={data.description} />
       <CardContent>
         <div className={classes.content}>
@@ -48,6 +45,14 @@ export default function Details() {
           <strong>Description:</strong> <span>{data.description.repeat(50)}</span>
         </div>
       </CardContent>
+      <CardActions>
+        <Button variant="contained" color="primary" className={classes.actionButton}>
+          <Link to={`/recordTypes/${id}/edit`}>EDIT</Link>
+        </Button>
+        <Button variant="contained" color="error" className={classes.actionButton}>
+          <Link to="/recordTypes">REMOVE</Link>
+        </Button>
+      </CardActions>
     </Card>
   )
 }

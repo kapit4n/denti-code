@@ -10,7 +10,7 @@ import { deleteAction } from '../../../services/crud';
 import { ENTITY_NAME } from '../constants'
 import "./index.css"
 
-const LIST_BC_LABEL = 'TYPES LIST'
+const LIST_BC_LABEL = 'LIST RECORD TYPES'
 
 export default function Index({ setBreadcrumbs }) {
   const { data, refetch } = useFetch({ entity: ENTITY_NAME })

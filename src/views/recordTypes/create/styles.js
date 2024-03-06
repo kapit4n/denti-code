@@ -7,6 +7,10 @@ const styles = () => {
     },
     fieldContainer: {
       margin: '1rem 0'
+    },
+    actionButtons: {
+      display: 'flex',
+      gap: '1rem'
     }
   }
 }

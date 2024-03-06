@@ -49,7 +49,7 @@ export default function Details({ setBreadcrumbs }) {
 
   React.useEffect(() => {
     setBreadcrumbs([
-      { label: 'LIST', route: "/patients" },
+      { label: 'LIST PATIENTS', route: "/patients" },
       { label: 'DETAILS' }
     ])
   }, [])

@@ -23,9 +23,10 @@ export function CreateForm({ register, handleSubmit }) {
       <FormControl>
         <TextField {...register("speciality")} label="Speciality" variant="outlined" />
       </FormControl>
-      <FormControl>
-        <Button type="submit" variant="contained" color="primary">Create</Button>
-      </FormControl>
+      <div className={classes.actionButtons}>
+        <Button type="submit" variant="contained" color="primary">SAVE</Button>
+        <Button type="submit" variant="contained" color="secondary">CANCEL</Button>
+      </div>
     </form>
   )
 }
