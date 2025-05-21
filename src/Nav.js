@@ -61,24 +61,26 @@ export default function Nav() {
               <MenuIcon />
             </IconButton>
           )}
-          {matches && (
+          {matches && (<>
             <div className={classes.linksContainer}>
-              <Link to={`/`} className={!includesPatients && !includesDoctors && !includesRecordTypes && !includesRecords && !includesAppointments ? classes.currentLink : classes.activeLink}>Dashboard X</Link>
+              <Link to={`/`} className={!includesPatients && !includesDoctors && !includesRecordTypes && !includesRecords && !includesAppointments ? classes.currentLink : classes.activeLink}>Dashboard</Link>
               <Link to={`/patients`} className={includesPatients ? classes.currentLink : classes.activeLink}>Patients</Link>
               <Link to={`/doctors`} className={includesDoctors ? classes.currentLink : classes.activeLink}>Doctors</Link>
-              <Link to={`/recordTypes`} className={includesRecordTypes ? classes.currentLink : classes.activeLink}>Record Types</Link>
-              <Link to={`/records`} className={includesRecords ? classes.currentLink : classes.activeLink}>Records</Link>
+              <Link to={`/doctors`} className={includesDoctors ? classes.currentLink : classes.activeLink}>Specializations</Link>
+              <Link to={`/recordTypes`} className={includesRecordTypes ? classes.currentLink : classes.activeLink}>Categories</Link>
+              <Link to={`/recordTypes`} className={includesRecordTypes ? classes.currentLink : classes.activeLink}>Types</Link>
               <Link to={`/appointments`} className={includesAppointments ? classes.currentLink : classes.activeLink}>Appointments</Link>
+              <Link to={`/records`} className={includesRecords ? classes.currentLink : classes.activeLink}>Actions</Link>
             </div>
+            </>
           )}
 
           {user && user.firstName ? (
-            <div style={{ padding: '1.5rem 2rem' }}>
-              <span>{user.firstName}</span>
-              <Button style={{ color: 'white' }} variant="outlined" onClick={() => {
-                handleUserChange({})
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span>{user.firstName.charAt(0)}</span>
+              <Button style={{ color: 'white' }} variant="outlined" onClick={() => { handleUserChange({})
                 history.push('/')
-              }}>Sign Out</Button>
+              }}>SignOut</Button>
             </div>
           ) : (
             <div style={{ padding: '1.5rem 2rem' }}>
