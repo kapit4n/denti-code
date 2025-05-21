@@ -36,7 +36,7 @@ function App() {
   const value = { user, handleUserChange };
 
   return (
-    <div className="App container">
+    <div className="container">
         <Router>
           <UserContext.Provider value={value}>
             <Nav />

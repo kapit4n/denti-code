@@ -35,13 +35,12 @@
 }
 
 main {
-  width: 50rem;
+  padding: 1rem
 }
 
 @media only screen and (min-width: 1000px) {
   .page-container {
     width: 100%;
-    max-width: 40rem;
     padding-top: 1rem;
   }
 
