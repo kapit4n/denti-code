@@ -15,7 +15,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.1.10",
-    "axios": "^1.6.4",
+    "axios": "^1.7.4",
     "date-fns": "^2.29.3",
     "dotenv": "^10.0.0",
     "expect": "^26.6.2",
